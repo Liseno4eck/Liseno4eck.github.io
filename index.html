@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Для тебя ❤️</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+
+    font-family: Arial, sans-serif;
+
+    color: white;
+
+    background: #08001c;
+}
+
+
+/* =========================
+   ОБЩИЕ ЭКРАНЫ
+========================= */
+
+.screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   ЭКРАН 1 — ВОПРОС
+========================= */
+
+#questionScreen {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #5930d4 0%,
+            #251064 45%,
+            #08001c 100%
+        );
+}
+
+.question-box {
+
+    width: min(90%, 500px);
+
+    text-align: center;
+}
+
+.question-box h1 {
+
+    font-size: clamp(28px, 7vw, 46px);
+
+    margin-bottom: 30px;
+
+    text-shadow:
+        0 0 10px #8c5cff,
+        0 0 25px #5d20ff;
+}
+
+
+/* =========================
+   ПОЛЕ
+========================= */
+
+input {
+
+    width: 100%;
+
+    padding: 17px 20px;
+
+    border-radius: 15px;
+
+    border: 2px solid #7c4dff;
+
+    outline: none;
+
+    background: rgba(255,255,255,0.08);
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 20px;
+
+    box-shadow:
+        0 0 10px #6030ff,
+        inset 0 0 10px rgba(120,70,255,0.2);
+}
+
+input::placeholder {
+    color: #c9baff;
+}
+
+
+/* =========================
+   КНОПКИ
+========================= */
+
+button {
+
+    margin-top: 20px;
+
+    padding: 15px 30px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4420ff,
+            #00aaff
+        );
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px #4e32ff,
+        0 0 25px rgba(0,150,255,0.6);
+
+    transition: 0.3s;
+}
+
+button:hover {
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 20px #4e32ff,
+        0 0 40px #00aaff;
+}
+
+
+/* =========================
+   ОШИБКА
+========================= */
+
+#error {
+
+    margin-top: 15px;
+
+    color: #ff79c6;
+
+    min-height: 25px;
+}
+
+
+/* =========================
+   ЭКРАН 2 — ПРАВИЛЬНО
+========================= */
+
+#successScreen {
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #5526cc,
+            #170842 75%
+        );
+}
+
+.success-text {
+
+    animation: appear 1s ease;
+}
+
+.success-text h2 {
+
+    font-size: clamp(28px, 7vw, 45px);
+
+    text-shadow:
+        0 0 10px #8d5cff,
+        0 0 30px #4c00ff;
+}
+
+.success-text p {
+
+    margin-top: 15px;
+
+    color: #d7caff;
+
+    font-size: 18px;
+}
+
+
+/* =========================
+   ЭКРАН 3 — ПИСЬМО
+========================= */
+
+#letterScreen {
+
+    overflow-y: auto;
+
+    padding: 30px 15px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #4b24b8,
+            #100026 80%
+        );
+}
+
+.letter {
+
+    position: relative;
+
+    width: min(92%, 650px);
+
+    max-height: 90vh;
+
+    padding: 45px 35px;
+
+    color: #321b42;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf0,
+            #f6e5c9
+        );
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 0 20px rgba(255,255,255,0.2),
+        0 0 60px rgba(90,20,255,0.5);
+
+    transform: rotate(-1deg);
+
+    animation: letterAppear 1s ease;
+
+    overflow-y: auto;
+}
+
+.letter::before {
+
+    content: "💌";
+
+    position: absolute;
+
+    top: 12px;
+
+    right: 18px;
+
+    font-size: 28px;
+}
+
+.letter h2 {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    color: #6c2698;
+
+    font-size: 30px;
+}
+
+.letter-text {
+
+    white-space: pre-line;
+
+    font-family: Georgia, serif;
+
+    font-size: 19px;
+
+    line-height: 1.7;
+}
+
+.letter button {
+
+    display: block;
+
+    margin: 30px auto 0;
+}
+
+
+/* =========================
+   ФИНАЛЬНЫЙ ЭКРАН
+========================= */
+
+#finalScreen {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #5930d4 0%,
+            #251064 45%,
+            #08001c 100%
+        );
+
+    text-align: center;
+}
+
+
+/* =========================
+   ФИНАЛЬНЫЙ ТЕКСТ
+========================= */
+
+.final-text {
+
+    animation: finalAppear 1.5s ease;
+
+    padding: 20px;
+}
+
+.final-text h1 {
+
+    font-size: clamp(
+        45px,
+        12vw,
+        100px
+    );
+
+    line-height: 1.1;
+
+    text-transform: uppercase;
+
+    color: white;
+
+    text-shadow:
+
+        0 0 10px #ffffff,
+
+        0 0 20px #9d5cff,
+
+        0 0 40px #713cff,
+
+        0 0 70px #4c00ff;
+}
+
+.final-heart {
+
+    display: block;
+
+    margin-top: 25px;
+
+    font-size: clamp(
+        55px,
+        12vw,
+        100px
+    );
+
+    animation: heartBeat 1.2s infinite;
+}
+
+
+/* =========================
+   АНИМАЦИИ
+========================= */
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.8);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+    }
+}
+
+
+@keyframes letterAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(50px)
+            rotate(-5deg);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            rotate(-1deg);
+    }
+}
+
+
+@keyframes finalAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.5)
+            translateY(40px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+
+        transform: scale(1);
+    }
+
+    50% {
+
+        transform: scale(1.25);
+    }
+}
+
+
+/* =========================
+   ТЕЛЕФОН
+========================= */
+
+@media (max-width: 600px) {
+
+    .letter {
+
+        padding: 35px 22px;
+
+        min-height: 450px;
+    }
+
+    .letter-text {
+
+        font-size: 17px;
+
+        line-height: 1.6;
+    }
+
+    .letter h2 {
+
+        font-size: 25px;
+    }
+
+    button {
+
+        font-size: 16px;
+
+        padding: 14px 25px;
+    }
+
+    .final-text h1 {
+
+        font-size: 48px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     ЭКРАН 1 — ВОПРОС
+========================= -->
+
+<section
+    id="questionScreen"
+    class="screen"
+>
+
+    <div class="question-box">
+
+        <h1>
+            Когда у тебя день рождения?
+        </h1>
+
+        <input
+            id="birthdayInput"
+            type="text"
+            placeholder="Например: 01.10"
+        >
+
+        <button onclick="checkBirthday()">
+            Ответить ❤️
+        </button>
+
+        <div id="error"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ЭКРАН 2 — ПРАВИЛЬНО
+========================= -->
+
+<section
+    id="successScreen"
+    class="screen hidden"
+>
+
+    <div class="success-text">
+
+        <h2>
+            Отлично! Ты ввела правильно ❤️
+        </h2>
+
+        <p>
+            У меня для тебя кое-что есть...
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ЭКРАН 3 — ПИСЬМО
+========================= -->
+
+<section
+    id="letterScreen"
+    class="screen hidden"
+>
+
+    <div class="letter">
+
+        <h2>
+            Для тебя 💌
+        </h2>
+
+
+        <div class="letter-text">
+
+ЗДЕСЬ НАПИШИ СВОЙ ТЕКСТ.
+
+Например:
+
+Привет ❤️
+
+Я хотел оставить тебе кое-что особенное.
+Надеюсь, тебе понравится этот маленький сюрприз.
+
+Спасибо тебе за всё.
+Ты очень важный для меня человек.
+
+Люблю ❤️
+
+        </div>
+
+
+        <button onclick="openFinalScreen()">
+            Дальше ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ЭКРАН 4 — ФИНАЛ
+========================= -->
+
+<section
+    id="finalScreen"
+    class="screen hidden"
+>
+
+    <div class="final-text">
+
+        <h1>
+            БОЛЬШОЕ<br>
+            ТЕБЕ<br>
+            СПАСИБО
+        </h1>
+
+        <span class="final-heart">
+            ❤️
+        </span>
+
+    </div>
+
+</section>
+
+
+<script>
+
+
+/* ========================================
+   ПРАВИЛЬНАЯ ДАТА
+======================================== */
+
+const correctBirthday = "01.10";
+
+
+/* ========================================
+   ПРОВЕРКА ДАТЫ
+======================================== */
+
+function checkBirthday() {
+
+    const input =
+        document
+        .getElementById("birthdayInput")
+        .value
+        .trim();
+
+
+    const error =
+        document
+        .getElementById("error");
+
+
+    if (input === correctBirthday) {
+
+        error.innerHTML = "";
+
+
+        showScreen(
+            "questionScreen",
+            "successScreen"
+        );
+
+
+        /*
+           Через 2.5 секунды
+           появляется письмо.
+        */
+
+        setTimeout(function() {
+
+            showScreen(
+                "successScreen",
+                "letterScreen"
+            );
+
+        }, 2500);
+
+
+    } else {
+
+        error.innerHTML =
+            "Хмм... Кажется, ответ неправильный 😏";
+
+    }
+
+}
+
+
+/* ========================================
+   ОТКРЫТЬ ФИНАЛ
+======================================== */
+
+function openFinalScreen() {
+
+    showScreen(
+        "letterScreen",
+        "finalScreen"
+    );
+
+}
+
+
+/* ========================================
+   ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ
+======================================== */
+
+function showScreen(
+    oldScreen,
+    newScreen
+) {
+
+    document
+        .getElementById(oldScreen)
+        .classList.add("hidden");
+
+
+    document
+        .getElementById(newScreen)
+        .classList.remove("hidden");
+
+}
+
+
+/* ========================================
+   ENTER В ПОЛЕ
+======================================== */
+
+document
+    .getElementById("birthdayInput")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                checkBirthday();
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
