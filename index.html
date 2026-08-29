@@ -18,32 +18,19 @@ body {
     width: 100%;
     min-height: 100vh;
     overflow: hidden;
-
     font-family: Arial, sans-serif;
-
     color: white;
-
     background: #08001c;
 }
 
-
-/* =========================
-   ОБЩИЕ ЭКРАНЫ
-========================= */
-
 .screen {
-
     position: fixed;
-
     inset: 0;
-
     width: 100%;
     height: 100%;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     padding: 20px;
@@ -59,7 +46,6 @@ body {
 ========================= */
 
 #questionScreen {
-
     background:
         radial-gradient(
             circle at center,
@@ -70,16 +56,12 @@ body {
 }
 
 .question-box {
-
     width: min(90%, 500px);
-
     text-align: center;
 }
 
 .question-box h1 {
-
     font-size: clamp(28px, 7vw, 46px);
-
     margin-bottom: 30px;
 
     text-shadow:
@@ -89,17 +71,15 @@ body {
 
 
 /* =========================
-   ПОЛЕ
+   INPUT
 ========================= */
 
 input {
-
     width: 100%;
 
     padding: 17px 20px;
 
     border-radius: 15px;
-
     border: 2px solid #7c4dff;
 
     outline: none;
@@ -127,13 +107,11 @@ input::placeholder {
 ========================= */
 
 button {
-
     margin-top: 20px;
 
     padding: 15px 30px;
 
     border: none;
-
     border-radius: 15px;
 
     color: white;
@@ -146,7 +124,6 @@ button {
         );
 
     font-size: 18px;
-
     font-weight: bold;
 
     cursor: pointer;
@@ -159,7 +136,6 @@ button {
 }
 
 button:hover {
-
     transform: scale(1.05);
 
     box-shadow:
@@ -173,7 +149,6 @@ button:hover {
 ========================= */
 
 #error {
-
     margin-top: 15px;
 
     color: #ff79c6;
@@ -187,7 +162,6 @@ button:hover {
 ========================= */
 
 #successScreen {
-
     text-align: center;
 
     background:
@@ -199,12 +173,10 @@ button:hover {
 }
 
 .success-text {
-
     animation: appear 1s ease;
 }
 
 .success-text h2 {
-
     font-size: clamp(28px, 7vw, 45px);
 
     text-shadow:
@@ -213,7 +185,6 @@ button:hover {
 }
 
 .success-text p {
-
     margin-top: 15px;
 
     color: #d7caff;
@@ -227,7 +198,6 @@ button:hover {
 ========================= */
 
 #letterScreen {
-
     overflow-y: auto;
 
     padding: 30px 15px;
@@ -241,7 +211,6 @@ button:hover {
 }
 
 .letter {
-
     position: relative;
 
     width: min(92%, 650px);
@@ -273,20 +242,17 @@ button:hover {
 }
 
 .letter::before {
-
     content: "💌";
 
     position: absolute;
 
     top: 12px;
-
     right: 18px;
 
     font-size: 28px;
 }
 
 .letter h2 {
-
     text-align: center;
 
     margin-bottom: 25px;
@@ -297,7 +263,6 @@ button:hover {
 }
 
 .letter-text {
-
     white-space: pre-line;
 
     font-family: Georgia, serif;
@@ -308,7 +273,6 @@ button:hover {
 }
 
 .letter button {
-
     display: block;
 
     margin: 30px auto 0;
@@ -316,10 +280,11 @@ button:hover {
 
 
 /* =========================
-   ФИНАЛЬНЫЙ ЭКРАН
+   ЭКРАН 4 — ВОПРОС
 ========================= */
 
-#finalScreen {
+#choiceScreen {
+    text-align: center;
 
     background:
         radial-gradient(
@@ -328,58 +293,81 @@ button:hover {
             #251064 45%,
             #08001c 100%
         );
+}
 
-    text-align: center;
+.choice-box {
+    width: min(92%, 750px);
+
+    animation: finalAppear 1s ease;
+}
+
+.choice-box h1 {
+    font-size: clamp(28px, 6vw, 50px);
+
+    line-height: 1.25;
+
+    text-shadow:
+        0 0 10px #ffffff,
+        0 0 25px #8d5cff,
+        0 0 50px #4c00ff;
+
+    margin-bottom: 35px;
+}
+
+.choice-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+.choice-buttons button {
+    min-width: 150px;
 }
 
 
 /* =========================
-   ФИНАЛЬНЫЙ ТЕКСТ
+   ЭКРАН 5 — ОТВЕТ
 ========================= */
 
-.final-text {
+#answerScreen {
+    text-align: center;
 
-    animation: finalAppear 1.5s ease;
-
-    padding: 20px;
+    background:
+        radial-gradient(
+            circle at center,
+            #5930d4 0%,
+            #251064 45%,
+            #08001c 100%
+        );
 }
 
-.final-text h1 {
+.answer-box {
+    width: min(92%, 750px);
 
-    font-size: clamp(
-        45px,
-        12vw,
-        100px
-    );
+    animation: finalAppear 1s ease;
+}
 
-    line-height: 1.1;
+.answer-box h1 {
+    font-size: clamp(28px, 6vw, 50px);
 
-    text-transform: uppercase;
-
-    color: white;
+    line-height: 1.3;
 
     text-shadow:
-
         0 0 10px #ffffff,
-
-        0 0 20px #9d5cff,
-
-        0 0 40px #713cff,
-
-        0 0 70px #4c00ff;
+        0 0 25px #9d5cff,
+        0 0 50px #4c00ff;
 }
 
-.final-heart {
-
+.answer-heart {
     display: block;
 
     margin-top: 25px;
 
-    font-size: clamp(
-        55px,
-        12vw,
-        100px
-    );
+    font-size: 80px;
 
     animation: heartBeat 1.2s infinite;
 }
@@ -392,25 +380,20 @@ button:hover {
 @keyframes appear {
 
     from {
-
         opacity: 0;
-
         transform: scale(0.8);
     }
 
     to {
-
         opacity: 1;
-
         transform: scale(1);
     }
-}
 
+}
 
 @keyframes letterAppear {
 
     from {
-
         opacity: 0;
 
         transform:
@@ -419,20 +402,18 @@ button:hover {
     }
 
     to {
-
         opacity: 1;
 
         transform:
             translateY(0)
             rotate(-1deg);
     }
-}
 
+}
 
 @keyframes finalAppear {
 
     from {
-
         opacity: 0;
 
         transform:
@@ -441,28 +422,26 @@ button:hover {
     }
 
     to {
-
         opacity: 1;
 
         transform:
             scale(1)
             translateY(0);
     }
-}
 
+}
 
 @keyframes heartBeat {
 
     0%,
     100% {
-
         transform: scale(1);
     }
 
     50% {
-
         transform: scale(1.25);
     }
+
 }
 
 
@@ -473,34 +452,27 @@ button:hover {
 @media (max-width: 600px) {
 
     .letter {
-
         padding: 35px 22px;
-
         min-height: 450px;
     }
 
     .letter-text {
-
         font-size: 17px;
-
         line-height: 1.6;
     }
 
     .letter h2 {
-
         font-size: 25px;
     }
 
     button {
-
         font-size: 16px;
-
         padding: 14px 25px;
     }
 
-    .final-text h1 {
-
-        font-size: 48px;
+    .choice-box h1,
+    .answer-box h1 {
+        font-size: 32px;
     }
 
 }
@@ -513,7 +485,7 @@ button:hover {
 
 
 <!-- =========================
-     ЭКРАН 1 — ВОПРОС
+     ЭКРАН 1 — ДЕНЬ РОЖДЕНИЯ
 ========================= -->
 
 <section
@@ -583,7 +555,6 @@ button:hover {
             Для тебя 💌
         </h2>
 
-
         <div class="letter-text">
 
 ЗДЕСЬ НАПИШИ СВОЙ ТЕКСТ.
@@ -602,8 +573,7 @@ button:hover {
 
         </div>
 
-
-        <button onclick="openFinalScreen()">
+        <button onclick="openChoiceScreen()">
             Дальше ❤️
         </button>
 
@@ -613,23 +583,52 @@ button:hover {
 
 
 <!-- =========================
-     ЭКРАН 4 — ФИНАЛ
+     ЭКРАН 4 — ГЛАВНЫЙ ВОПРОС
 ========================= -->
 
 <section
-    id="finalScreen"
+    id="choiceScreen"
     class="screen hidden"
 >
 
-    <div class="final-text">
+    <div class="choice-box">
 
         <h1>
-            БОЛЬШОЕ<br>
-            ТЕБЕ<br>
-            СПАСИБО
+            Ты хочешь, чтобы я к тебе приехал
+            на выходные после твоего дня рождения? ❤️
         </h1>
 
-        <span class="final-heart">
+        <div class="choice-buttons">
+
+            <button onclick="answerYes()">
+                Да ❤️
+            </button>
+
+            <button onclick="answerNo()">
+                Нет 😢
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ЭКРАН 5 — ОТВЕТ
+========================= -->
+
+<section
+    id="answerScreen"
+    class="screen hidden"
+>
+
+    <div class="answer-box">
+
+        <h1 id="answerText"></h1>
+
+        <span class="answer-heart">
             ❤️
         </span>
 
@@ -638,19 +637,37 @@ button:hover {
 </section>
 
 
+<!-- ==================================================
+     EMAILJS
+================================================== -->
+
+<script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+
 <script>
 
+/* ==================================================
+   EMAILJS НАСТРОЙКА
+================================================== */
 
-/* ========================================
+emailjs.init({
+    publicKey: "ybgrbJ7-R3wrNJwjx"
+});
+
+
+/* ==================================================
    ПРАВИЛЬНАЯ ДАТА
-======================================== */
+================================================== */
 
 const correctBirthday = "01.10";
 
 
-/* ========================================
+/* ==================================================
    ПРОВЕРКА ДАТЫ
-======================================== */
+================================================== */
 
 function checkBirthday() {
 
@@ -659,7 +676,6 @@ function checkBirthday() {
         .getElementById("birthdayInput")
         .value
         .trim();
-
 
     const error =
         document
@@ -676,11 +692,6 @@ function checkBirthday() {
             "successScreen"
         );
 
-
-        /*
-           Через 2.5 секунды
-           появляется письмо.
-        */
 
         setTimeout(function() {
 
@@ -702,23 +713,133 @@ function checkBirthday() {
 }
 
 
-/* ========================================
-   ОТКРЫТЬ ФИНАЛ
-======================================== */
+/* ==================================================
+   ОТКРЫТЬ ВОПРОС ПОСЛЕ ПИСЬМА
+================================================== */
 
-function openFinalScreen() {
+function openChoiceScreen() {
 
     showScreen(
         "letterScreen",
-        "finalScreen"
+        "choiceScreen"
     );
 
 }
 
 
-/* ========================================
+/* ==================================================
+   НАЖАТА КНОПКА "ДА"
+================================================== */
+
+function answerYes() {
+
+    document
+        .getElementById("answerText")
+        .innerHTML =
+        "Спасибо, что согласилась ❤️<br><br>" +
+        "На выходных я приеду к тебе " +
+        "ориентировочно после 12.";
+
+
+    showScreen(
+        "choiceScreen",
+        "answerScreen"
+    );
+
+
+    sendAnswer(
+        "ПОЛЬЗОВАТЕЛЬ НАЖАЛА НА ДА ❤️"
+    );
+
+}
+
+
+/* ==================================================
+   НАЖАТА КНОПКА "НЕТ"
+================================================== */
+
+function answerNo() {
+
+    document
+        .getElementById("answerText")
+        .innerHTML =
+        "Что ж... Мне очень жаль, " +
+        "что ты не захотела, чтобы я приехал. 😢<br><br>" +
+        "Я уже купил билеты и подарок 🎁";
+
+
+    showScreen(
+        "choiceScreen",
+        "answerScreen"
+    );
+
+
+    sendAnswer(
+        "ПОЛЬЗОВАТЕЛЬ НАЖАЛА НА НЕТ 😢"
+    );
+
+}
+
+
+/* ==================================================
+   ОТПРАВКА ПИСЬМА ЧЕРЕЗ EMAILJS
+================================================== */
+
+function sendAnswer(answer) {
+
+    const now = new Date();
+
+
+    const date =
+        now.toLocaleDateString("ru-RU");
+
+
+    const time =
+        now.toLocaleTimeString(
+            "ru-RU",
+            {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }
+        );
+
+
+    emailjs.send(
+        "service_a2703aa",
+        "template_vkae2kg",
+        {
+            answer: answer,
+            date: date,
+            time: time
+        }
+    )
+
+    .then(function(response) {
+
+        console.log(
+            "Письмо успешно отправлено!",
+            response.status,
+            response.text
+        );
+
+    })
+
+    .catch(function(error) {
+
+        console.error(
+            "Ошибка отправки письма:",
+            error
+        );
+
+    });
+
+}
+
+
+/* ==================================================
    ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ
-======================================== */
+================================================== */
 
 function showScreen(
     oldScreen,
@@ -737,9 +858,9 @@ function showScreen(
 }
 
 
-/* ========================================
+/* ==================================================
    ENTER В ПОЛЕ
-======================================== */
+================================================== */
 
 document
     .getElementById("birthdayInput")
