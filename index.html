@@ -51,22 +51,18 @@ button{
     border:0;
     border-radius:15px;
     color:white;
-
     background:
         linear-gradient(
             90deg,
             #4420ff,
             #00aaff
         );
-
     font-size:18px;
     font-weight:bold;
     cursor:pointer;
-
     box-shadow:
         0 0 10px #4e32ff,
         0 0 25px rgba(0,150,255,.6);
-
     transition:.3s;
 }
 
@@ -78,7 +74,6 @@ button:hover{
 #choiceScreen,
 #answerScreen,
 #replyScreen{
-
     background:
         radial-gradient(
             circle at center,
@@ -86,9 +81,7 @@ button:hover{
             #251064 45%,
             #08001c 100%
         );
-
 }
-
 
 /* =========================
    ВОПРОС
@@ -117,7 +110,6 @@ button:hover{
             7vw,
             46px
         );
-
     margin-bottom:30px;
 }
 
@@ -128,16 +120,14 @@ textarea{
     border-radius:15px;
     border:2px solid #7c4dff;
     outline:none;
-
     background:
         rgba(255,255,255,.08);
-
     color:white;
     font-size:20px;
-
     box-shadow:
         0 0 10px #6030ff,
-        inset 0 0 10px rgba(120,70,255,.2);
+        inset 0 0 10px
+        rgba(120,70,255,.2);
 }
 
 input{
@@ -162,14 +152,12 @@ textarea::placeholder{
     color:#ffb0dc;
 }
 
-
 /* =========================
    SUCCESS
 ========================= */
 
 #successScreen{
     text-align:center;
-
     background:
         radial-gradient(
             circle,
@@ -189,7 +177,6 @@ textarea::placeholder{
             7vw,
             45px
         );
-
     text-shadow:
         0 0 10px #8d5cff,
         0 0 30px #4c00ff;
@@ -201,7 +188,6 @@ textarea::placeholder{
     font-size:18px;
 }
 
-
 /* =========================
    ПИСЬМО
 ========================= */
@@ -209,7 +195,6 @@ textarea::placeholder{
 #letterScreen{
     overflow-y:auto;
     padding:30px 15px;
-
     background:
         radial-gradient(
             circle at center,
@@ -220,32 +205,25 @@ textarea::placeholder{
 
 .letter{
     position:relative;
-
     width:min(92%,650px);
     max-height:90vh;
-
     padding:45px 35px;
-
     color:#321b42;
-
     background:
         linear-gradient(
             135deg,
             #fffaf0,
             #f6e5c9
         );
-
     border-radius:8px;
-
     box-shadow:
-        0 0 20px rgba(255,255,255,.2),
-        0 0 60px rgba(90,20,255,.5);
-
+        0 0 20px
+        rgba(255,255,255,.2),
+        0 0 60px
+        rgba(90,20,255,.5);
     transform:rotate(-1deg);
-
     animation:
         letterAppear 1s ease;
-
     overflow-y:auto;
 }
 
@@ -276,7 +254,6 @@ textarea::placeholder{
     margin:30px auto 0;
 }
 
-
 /* =========================
    ДА / НЕТ
 ========================= */
@@ -284,7 +261,6 @@ textarea::placeholder{
 .choice-box{
     width:min(92%,750px);
     text-align:center;
-
     animation:
         finalAppear 1s ease;
 }
@@ -296,7 +272,6 @@ textarea::placeholder{
             6vw,
             50px
         );
-
     line-height:1.25;
     margin-bottom:35px;
 }
@@ -324,7 +299,6 @@ textarea::placeholder{
     transform-origin:center;
 }
 
-
 /* =========================
    ОТВЕТ
 ========================= */
@@ -332,7 +306,6 @@ textarea::placeholder{
 .answer-box{
     width:min(92%,750px);
     text-align:center;
-
     animation:
         finalAppear 1s ease;
 }
@@ -344,7 +317,6 @@ textarea::placeholder{
             6vw,
             50px
         );
-
     line-height:1.3;
 }
 
@@ -352,7 +324,6 @@ textarea::placeholder{
     display:block;
     margin-top:25px;
     font-size:80px;
-
     animation:
         heartBeat 1.2s infinite;
 }
@@ -360,7 +331,6 @@ textarea::placeholder{
 .next-button{
     margin-top:35px;
 }
-
 
 /* =========================
    ФОТО
@@ -376,106 +346,75 @@ textarea::placeholder{
 #heartCanvas{
     position:absolute;
     inset:0;
-
     width:100%;
     height:100%;
-
     display:block;
-
     cursor:pointer;
     touch-action:none;
 }
 
 .photo-title{
     position:absolute;
-
     top:
         max(
             18px,
             env(safe-area-inset-top)
         );
-
     left:0;
     right:0;
-
     z-index:10;
-
     text-align:center;
-
     padding:10px 20px;
-
     font-size:
         clamp(
             20px,
             5vw,
             32px
         );
-
     text-shadow:
         0 0 10px #000,
         0 0 20px #000;
-
     pointer-events:none;
 }
 
 .photo-hint{
     position:absolute;
-
     left:0;
     right:0;
-
     bottom:
         max(
             20px,
             env(safe-area-inset-bottom)
         );
-
     z-index:10;
-
     text-align:center;
-
     padding:10px 20px;
-
     font-size:17px;
-
     color:white;
-
     text-shadow:
         0 0 8px #000,
         0 0 15px #000;
-
     pointer-events:none;
-
     animation:
         pulseHint 1.5s infinite;
 }
 
 #pleasantButton{
     position:absolute;
-
     z-index:20;
-
     left:50%;
-
     bottom:
         max(
             25px,
             env(safe-area-inset-bottom)
         );
-
     transform:
         translateX(-50%);
-
     display:none;
-
     margin:0;
-
     white-space:nowrap;
-
     font-size:20px;
-
     padding:17px 35px;
-
     animation:
         finalAppear .8s ease;
 }
@@ -492,7 +431,6 @@ textarea::placeholder{
     font-size:18px;
 }
 
-
 /* =========================
    АНИМАЦИИ
 ========================= */
@@ -502,7 +440,6 @@ textarea::placeholder{
         opacity:0;
         transform:scale(.8);
     }
-
     to{
         opacity:1;
         transform:scale(1);
@@ -512,15 +449,12 @@ textarea::placeholder{
 @keyframes letterAppear{
     from{
         opacity:0;
-
         transform:
             translateY(50px)
             rotate(-5deg);
     }
-
     to{
         opacity:1;
-
         transform:
             translateY(0)
             rotate(-1deg);
@@ -530,15 +464,12 @@ textarea::placeholder{
 @keyframes finalAppear{
     from{
         opacity:0;
-
         transform:
             scale(.5)
             translateY(40px);
     }
-
     to{
         opacity:1;
-
         transform:
             scale(1)
             translateY(0);
@@ -564,11 +495,6 @@ textarea::placeholder{
         opacity:1;
     }
 }
-
-
-/* =========================
-   АДАПТАЦИЯ
-========================= */
 
 @media(max-width:600px){
 
@@ -596,52 +522,33 @@ textarea::placeholder{
     .reply-box h1{
         font-size:32px;
     }
-
 }
-
 
 /* =================================================
    СЕКРЕТНАЯ ПАНЕЛЬ
 ================================================= */
 
 #adminScreen{
-
     background:
         radial-gradient(
             circle at center,
             #3c1b8f 0%,
             #100022 80%
         );
-
     overflow-y:auto;
-
     align-items:flex-start;
-
     padding:25px 15px;
 }
 
 .admin-box{
-
     width:min(94%,760px);
-
     max-height:92vh;
-
     overflow-y:auto;
-
     padding:30px;
-
     border-radius:22px;
-
-    background:
-        rgba(20,10,50,.96);
-
-    border:
-        1px solid
-        rgba(180,130,255,.35);
-
-    box-shadow:
-        0 0 45px
-        rgba(90,30,255,.45);
+    background:rgba(20,10,50,.96);
+    border:1px solid rgba(180,130,255,.35);
+    box-shadow:0 0 45px rgba(90,30,255,.45);
 }
 
 .admin-box h2{
@@ -674,13 +581,6 @@ textarea::placeholder{
     min-height:130px;
 }
 
-.admin-help{
-    display:block;
-    margin-top:7px;
-    color:#bdb0e8;
-    line-height:1.4;
-}
-
 .admin-actions{
     display:flex;
     gap:12px;
@@ -704,14 +604,9 @@ textarea::placeholder{
     margin-top:15px;
     padding:12px;
     border-radius:12px;
-
-    background:
-        rgba(255,255,255,.08);
-
+    background:rgba(255,255,255,.08);
     color:#fff;
-
     word-break:break-all;
-
     text-decoration:none;
 }
 
@@ -723,6 +618,35 @@ textarea::placeholder{
 #adminPhotoPreview{
     display:block;
     margin:0 auto;
+}
+
+.radio-row{
+    display:flex;
+    gap:20px;
+    margin-top:10px;
+    flex-wrap:wrap;
+}
+
+.radio-option{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 16px;
+    border-radius:12px;
+    background:rgba(255,255,255,.07);
+    cursor:pointer;
+}
+
+.radio-option input{
+    width:auto;
+    box-shadow:none;
+}
+
+.admin-small{
+    display:block;
+    margin-top:7px;
+    color:#bdb0e8;
+    line-height:1.45;
 }
 
 @media(max-width:600px){
@@ -738,7 +662,6 @@ textarea::placeholder{
 </head>
 
 <body>
-
 
 <!-- =================================================
      ВОПРОС
@@ -783,9 +706,7 @@ textarea::placeholder{
 
     <div class="success-text">
 
-        <h2 id="successText">
-            Отлично! Ты ввела правильно ❤️
-        </h2>
+        <h2 id="successTitle"></h2>
 
         <p>
             У меня для тебя кое-что есть...
@@ -826,7 +747,7 @@ textarea::placeholder{
 
 
 <!-- =================================================
-     ВОПРОС ДА / НЕТ
+     ВОПРОС С ДА / НЕТ
 ================================================= -->
 
 <section
@@ -836,7 +757,7 @@ textarea::placeholder{
 
     <div class="choice-box">
 
-        <h1 id="choiceText"></h1>
+        <h1 id="choiceQuestion"></h1>
 
         <div class="choice-buttons">
 
@@ -862,7 +783,7 @@ textarea::placeholder{
 
 
 <!-- =================================================
-     ОТВЕТ ПОСЛЕ ДА
+     ОТВЕТ
 ================================================= -->
 
 <section
@@ -901,7 +822,10 @@ textarea::placeholder{
 
     <canvas id="heartCanvas"></canvas>
 
-    <div class="photo-title">
+    <div
+        id="photoTitle"
+        class="photo-title"
+    >
         Ещё один сюрприз ❤️
     </div>
 
@@ -923,7 +847,7 @@ textarea::placeholder{
 
 
 <!-- =================================================
-     ОТВЕТ
+     ФИНАЛЬНЫЙ ОТВЕТ
 ================================================= -->
 
 <section
@@ -961,16 +885,12 @@ textarea::placeholder{
 
 <script>
 
-
 /* =================================================
    EMAILJS
 ================================================= */
 
 emailjs.init({
-
-    publicKey:
-        "ybgrbJ7-R3wrNJwjx"
-
+    publicKey:"ybgrbJ7-R3wrNJwjx"
 });
 
 
@@ -980,20 +900,11 @@ emailjs.init({
 
 const DEFAULT_CONFIG = {
 
-    name:
-        "Лера",
+    name:"Лера",
 
-    birthday:
-        "01.10",
+    birthday:"01.10",
 
-    successText:
-        "Отлично! Ты ввела правильно ❤️",
-
-    choiceText:
-        "Ты хочешь, чтобы я к тебе приехал<br>на выходные после твоего дня рождения? ❤️",
-
-    answerText:
-        "Спасибо, что согласилась ❤️<br><br>На выходных я приеду к тебе ориентировочно после 12.",
+    genderWord:"ввела",
 
     letter:
 `Дорогая любимая Лера
@@ -1005,14 +916,27 @@ const DEFAULT_CONFIG = {
 Я очень рад, что этот день настал и у меня для тебя подготовлен особый подарок, который
 я готовил в течение всего месяца специально для тебя.`,
 
-    photo:
-        "foto.jpg"
+    choiceQuestion:
+`Ты хочешь, чтобы я к тебе приехал
+на выходные после твоего дня рождения? ❤️`,
+
+    yesText:
+`Спасибо, что согласилась ❤️<br><br>
+На выходных я приеду к тебе ориентировочно после 12.`,
+
+    noRunsAway:true,
+
+    noText:
+`Ну ладно 😢
+Но если передумаешь — я всё равно буду рад тебя увидеть ❤️`,
+
+    photo:"foto.jpg"
 
 };
 
 
 /* =================================================
-   ПОЛУЧЕНИЕ НАСТРОЕК
+   ЗАГРУЗКА КОНФИГУРАЦИИ
 ================================================= */
 
 function getSiteConfig(){
@@ -1022,10 +946,8 @@ function getSiteConfig(){
             window.location.search
         );
 
-
     const configId =
         params.get("cfg");
-
 
     if(!configId){
 
@@ -1035,15 +957,12 @@ function getSiteConfig(){
 
     }
 
-
     try{
 
         const saved =
             localStorage.getItem(
-                "site_config_" +
-                configId
+                "site_config_" + configId
             );
-
 
         if(!saved){
 
@@ -1051,13 +970,11 @@ function getSiteConfig(){
                 "Настройки для этой ссылки не найдены."
             );
 
-
             return {
                 ...DEFAULT_CONFIG
             };
 
         }
-
 
         return {
 
@@ -1067,15 +984,12 @@ function getSiteConfig(){
 
         };
 
-    }
-
-    catch(error){
+    }catch(error){
 
         console.error(
             "Ошибка загрузки настроек:",
             error
         );
-
 
         return {
             ...DEFAULT_CONFIG
@@ -1099,23 +1013,103 @@ const PHOTO_URL =
 
 
 /* =================================================
-   НАСТРОЙКИ СЕРДЕЧЕК
+   ПЕРЕМЕННЫЕ
 ================================================= */
 
-const HEART_SIZE =
-    6;
+const HEART_SIZE = 6;
 
+const REVEAL_PER_CLICK = 0.125;
 
-const REVEAL_PER_CLICK =
-    0.125;
-
-
-let noButtonClicks =
-    0;
+let noButtonClicks = 0;
 
 
 /* =================================================
-   ДЕНЬ РОЖДЕНИЯ
+   ПРИМЕНЕНИЕ НАСТРОЕК
+================================================= */
+
+function applySiteConfig(){
+
+    const letter =
+        document.getElementById(
+            "letterText"
+        );
+
+    if(letter){
+
+        letter.textContent =
+            SITE_CONFIG.letter || "";
+
+    }
+
+
+    const successTitle =
+        document.getElementById(
+            "successTitle"
+        );
+
+    if(successTitle){
+
+        successTitle.innerHTML =
+            "Отлично! Ты " +
+            (
+                SITE_CONFIG.genderWord ||
+                "ввела"
+            ) +
+            " правильно ❤️";
+
+    }
+
+
+    const choiceQuestion =
+        document.getElementById(
+            "choiceQuestion"
+        );
+
+    if(choiceQuestion){
+
+        choiceQuestion.innerHTML =
+            (
+                SITE_CONFIG.choiceQuestion ||
+                DEFAULT_CONFIG.choiceQuestion
+            );
+
+    }
+
+
+    const photoTitle =
+        document.getElementById(
+            "photoTitle"
+        );
+
+    if(photoTitle){
+
+        photoTitle.textContent =
+            "Ещё один сюрприз ❤️";
+
+    }
+
+
+    document.title =
+        `Для ${SITE_CONFIG.name} ❤️`;
+
+
+    const replyInput =
+        document.getElementById(
+            "replyText"
+        );
+
+    if(replyInput){
+
+        replyInput.placeholder =
+            `Напиши здесь свой ответ, ${SITE_CONFIG.name}...`;
+
+    }
+
+}
+
+
+/* =================================================
+   ПРОВЕРКА ДНЯ РОЖДЕНИЯ
 ================================================= */
 
 function checkBirthday(){
@@ -1141,8 +1135,7 @@ function checkBirthday(){
         correctBirthday
     ){
 
-        error.innerHTML =
-            "";
+        error.innerHTML = "";
 
 
         showScreen(
@@ -1152,7 +1145,6 @@ function checkBirthday(){
 
 
         setTimeout(
-
             function(){
 
                 showScreen(
@@ -1161,14 +1153,11 @@ function checkBirthday(){
                 );
 
             },
-
             2500
-
         );
 
-    }
 
-    else{
+    }else{
 
         error.innerHTML =
             "Хмм... Кажется, ответ неправильный 😏";
@@ -1179,7 +1168,7 @@ function checkBirthday(){
 
 
 /* =================================================
-   ЭКРАН ВЫБОРА
+   ОТКРЫТЬ ВОПРОС
 ================================================= */
 
 function openChoiceScreen(){
@@ -1191,45 +1180,87 @@ function openChoiceScreen(){
 
 
     const noButton =
-        document
-            .getElementById(
-                "noButton"
-            );
+        document.getElementById(
+            "noButton"
+        );
 
 
-    noButton.style.position =
-        "";
+    noButton.style.position = "";
 
-    noButton.style.left =
-        "";
+    noButton.style.left = "";
 
-    noButton.style.top =
-        "";
+    noButton.style.top = "";
+
+
+    noButtonClicks = 0;
+
+
+    const yesButton =
+        document.getElementById(
+            "yesButton"
+        );
+
+
+    yesButton.style.transform =
+        "scale(1)";
 
 }
 
 
 /* =================================================
-   НЕТ — НЕ ИЗМЕНЕНО
+   НАЖАТИЕ НЕТ
 ================================================= */
 
 function answerNo(){
+
+    /*
+       Если в панели указано,
+       что кнопка НЕ должна убегать,
+       показываем обычный ответ.
+    */
+
+    if(
+        SITE_CONFIG.noRunsAway === false
+    ){
+
+        document
+            .getElementById(
+                "answerText"
+            )
+            .innerHTML =
+                SITE_CONFIG.noText ||
+                "Хорошо ❤️";
+
+
+        showScreen(
+            "choiceScreen",
+            "answerScreen"
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+       Старая логика остаётся
+       без изменений.
+    */
 
     noButtonClicks++;
 
 
     const noButton =
-        document
-            .getElementById(
-                "noButton"
-            );
+        document.getElementById(
+            "noButton"
+        );
 
 
     const yesButton =
-        document
-            .getElementById(
-                "yesButton"
-            );
+        document.getElementById(
+            "yesButton"
+        );
 
 
     const scale =
@@ -1251,8 +1282,7 @@ function answerNo(){
         "fixed";
 
 
-    const margin =
-        15;
+    const margin = 15;
 
 
     const w =
@@ -1304,7 +1334,7 @@ function answerNo(){
 
 
 /* =================================================
-   ДА
+   НАЖАТИЕ ДА
 ================================================= */
 
 function answerYes(){
@@ -1314,9 +1344,8 @@ function answerYes(){
             "answerText"
         )
         .innerHTML =
-
-        SITE_CONFIG.answerText ||
-        DEFAULT_CONFIG.answerText;
+            SITE_CONFIG.yesText ||
+            DEFAULT_CONFIG.yesText;
 
 
     showScreen(
@@ -1328,7 +1357,7 @@ function answerYes(){
 
 
 /* =================================================
-   ФОТО
+   ФОТО ЭКРАН
 ================================================= */
 
 function openPhotoScreen(){
@@ -1363,11 +1392,14 @@ function openPhotoScreen(){
 }
 
 
+/* =================================================
+   ФОТОГРАФИЯ
+================================================= */
+
 const canvas =
-    document
-        .getElementById(
-            "heartCanvas"
-        );
+    document.getElementById(
+        "heartCanvas"
+    );
 
 
 const ctx =
@@ -1381,20 +1413,15 @@ const ctx =
 
 let hearts = [];
 
-let imageReady =
-    false;
+let imageReady = false;
 
-let revealedCount =
-    0;
+let revealedCount = 0;
 
-let targetCount =
-    0;
+let targetCount = 0;
 
-let assembling =
-    false;
+let assembling = false;
 
-let animationFrame =
-    null;
+let animationFrame = null;
 
 
 const photo =
@@ -1408,8 +1435,7 @@ photo.src =
 photo.onload =
 function(){
 
-    imageReady =
-        true;
+    imageReady = true;
 
 
     if(
@@ -1433,14 +1459,13 @@ function(){
 photo.onerror =
 function(){
 
-    imageReady =
-        false;
+    imageReady = false;
 
 };
 
 
 /* =================================================
-   ИНИЦИАЛИЗАЦИЯ ФОТО
+   ИНИЦИАЛИЗАЦИЯ
 ================================================= */
 
 function initHeartPhoto(){
@@ -1479,13 +1504,9 @@ function initHeartPhoto(){
 
 
         ctx.fillText(
-
             "Не удалось загрузить фотографию",
-
             canvas.width / 2,
-
             canvas.height / 2
-
         );
 
 
@@ -1509,17 +1530,12 @@ function initHeartPhoto(){
 
     hearts = [];
 
+    revealedCount = 0;
 
-    revealedCount =
-        0;
-
-
-    assembling =
-        false;
+    assembling = false;
 
 
     buildHeartField();
-
 
     drawHeartField();
 
@@ -1817,16 +1833,18 @@ function buildHeartField(){
 
 
 /* =================================================
-   РИСОВАНИЕ СЕРДЕЧКА
+   РИСОВАНИЕ СЕРДЦА
 ================================================= */
 
 function drawHeart(
+
     x,
     y,
     size,
     gray,
     alpha,
     scale
+
 ){
 
     ctx.save();
@@ -1838,22 +1856,20 @@ function drawHeart(
 
     const value =
         Math.max(
-
             0,
-
             Math.min(
                 255,
                 Math.round(gray)
             )
-
         );
 
 
     ctx.fillStyle =
-
         "rgb(" +
-        value + "," +
-        value + "," +
+        value +
+        "," +
+        value +
+        "," +
         value +
         ")";
 
@@ -1884,30 +1900,22 @@ function drawHeart(
 
 
     ctx.bezierCurveTo(
-
         -s * 0.95,
         -s * 0.35,
-
         -s * 1.05,
         s * 0.65,
-
         0,
         s
-
     );
 
 
     ctx.bezierCurveTo(
-
         s * 1.05,
         s * 0.65,
-
         s * 0.95,
         -s * 0.35,
-
         0,
         s * 0.32
-
     );
 
 
@@ -1954,8 +1962,7 @@ function drawHeartField(){
         "rgba(255,255,255,.08)";
 
 
-    ctx.lineWidth =
-        1;
+    ctx.lineWidth = 1;
 
 
     ctx.strokeRect(
@@ -2016,7 +2023,7 @@ function drawHeartField(){
 
 
 /* =================================================
-   ОТКРЫТИЕ ЧАСТИ ФОТО
+   ОТКРЫВАЕМ ЧАСТЬ ФОТО
 ================================================= */
 
 function revealPhotoPart(){
@@ -2024,6 +2031,7 @@ function revealPhotoPart(){
     if(
 
         !imageReady ||
+
         assembling
 
     ){
@@ -2088,13 +2096,15 @@ function revealPhotoPart(){
         nextCount;
 
 
-    assembling =
-        true;
+    assembling = true;
 
 
     animateAssembly(
+
         firstIndex,
+
         nextCount
+
     );
 
 
@@ -2116,12 +2126,14 @@ function revealPhotoPart(){
 
 
 /* =================================================
-   АНИМАЦИЯ
+   ПЛАВНАЯ СБОРКА
 ================================================= */
 
 function animateAssembly(
+
     firstIndex,
     lastIndex
+
 ){
 
     const duration =
@@ -2194,14 +2206,11 @@ function animateAssembly(
 
             localT =
                 Math.max(
-
                     0,
-
                     Math.min(
                         1,
                         localT
                     )
-
                 );
 
 
@@ -2265,12 +2274,9 @@ function animateAssembly(
                     frame
                 );
 
-        }
+        }else{
 
-        else{
-
-            assembling =
-                false;
+            assembling = false;
 
 
             for(
@@ -2393,7 +2399,7 @@ window.addEventListener(
 
 
 /* =================================================
-   ФИНАЛ
+   ФИНАЛЬНЫЙ ЭКРАН
 ================================================= */
 
 function openReplyScreen(){
@@ -2476,7 +2482,6 @@ function sendPersonalReply(){
     )
 
     .then(
-
         function(){
 
             status.innerHTML =
@@ -2491,11 +2496,9 @@ function sendPersonalReply(){
                 "";
 
         }
-
     )
 
     .catch(
-
         function(error){
 
             console.error(
@@ -2507,7 +2510,6 @@ function sendPersonalReply(){
                 "Не удалось отправить сообщение 😢";
 
         }
-
     );
 
 }
@@ -2518,8 +2520,10 @@ function sendPersonalReply(){
 ================================================= */
 
 function showScreen(
+
     oldScreen,
     newScreen
+
 ){
 
     document
@@ -2545,12 +2549,8 @@ function showScreen(
 
 
 /* =================================================
-   СЕКРЕТНЫЙ КОД 304056
+   СЕКРЕТНЫЙ КОД
 ================================================= */
-
-let secretCode =
-    "";
-
 
 document
     .getElementById(
@@ -2564,16 +2564,15 @@ document
                 event.target.value.trim();
 
 
+            /*
+               Секретная комбинация 304056
+            */
+
             if(
-                value ===
-                "304056"
+                value === "304056"
             ){
 
-                secretCode =
-                    "";
-
-                event.target.value =
-                    "";
+                event.target.value = "";
 
                 openAdmin();
 
@@ -2587,10 +2586,7 @@ document
             ){
 
                 event.target.value =
-                    value.slice(
-                        0,
-                        6
-                    );
+                    value.slice(0,6);
 
             }
 
@@ -2607,17 +2603,16 @@ document
         function(event){
 
             if(
-                event.key ===
-                "Enter"
+                event.key === "Enter"
             ){
 
                 if(
-                    event.target.value.trim() ===
+                    event.target.value.trim()
+                    ===
                     "304056"
                 ){
 
-                    event.target.value =
-                        "";
+                    event.target.value = "";
 
                     openAdmin();
 
@@ -2635,108 +2630,10 @@ document
 
 
 /* =================================================
-   ПРИМЕНЕНИЕ НАСТРОЕК
+   ПРЕДПРОСМОТР ФОТО
 ================================================= */
 
-function applySiteConfig(){
-
-    /* Письмо */
-
-    const letter =
-        document.getElementById(
-            "letterText"
-        );
-
-
-    if(letter){
-
-        letter.textContent =
-            SITE_CONFIG.letter;
-
-    }
-
-
-    /* Текст после правильной даты */
-
-    const successText =
-        document.getElementById(
-            "successText"
-        );
-
-
-    if(successText){
-
-        successText.textContent =
-            SITE_CONFIG.successText ||
-            DEFAULT_CONFIG.successText;
-
-    }
-
-
-    /* Вопрос Да / Нет */
-
-    const choiceText =
-        document.getElementById(
-            "choiceText"
-        );
-
-
-    if(choiceText){
-
-        choiceText.innerHTML =
-            SITE_CONFIG.choiceText ||
-            DEFAULT_CONFIG.choiceText;
-
-    }
-
-
-    /* Заголовок */
-
-    document.title =
-        `Для ${SITE_CONFIG.name} ❤️`;
-
-
-    /* Ответ после Да */
-
-    const answerText =
-        document.getElementById(
-            "answerText"
-        );
-
-
-    if(answerText){
-
-        answerText.innerHTML =
-            SITE_CONFIG.answerText ||
-            DEFAULT_CONFIG.answerText;
-
-    }
-
-
-    /* Поле ответа */
-
-    const replyInput =
-        document.getElementById(
-            "replyText"
-        );
-
-
-    if(replyInput){
-
-        replyInput.placeholder =
-            `Напиши здесь свой ответ, ${SITE_CONFIG.name}...`;
-
-    }
-
-}
-
-
-/* =================================================
-   ФОТО В ПАНЕЛИ
-================================================= */
-
-let selectedAdminPhotoData =
-    null;
+let selectedAdminPhotoData = null;
 
 
 function previewAdminPhoto(event){
@@ -2748,19 +2645,14 @@ function previewAdminPhoto(event){
 
     if(!file){
 
-        selectedAdminPhotoData =
-            null;
-
+        selectedAdminPhotoData = null;
 
         document
             .getElementById(
                 "adminPhotoPreviewWrap"
             )
             .classList
-            .add(
-                "hidden"
-            );
-
+            .add("hidden");
 
         return;
 
@@ -2773,13 +2665,9 @@ function previewAdminPhoto(event){
         )
     ){
 
-        event.target.value =
-            "";
+        event.target.value = "";
 
-
-        selectedAdminPhotoData =
-            null;
-
+        selectedAdminPhotoData = null;
 
         document
             .getElementById(
@@ -2787,7 +2675,6 @@ function previewAdminPhoto(event){
             )
             .textContent =
             "Можно выбрать только изображение.";
-
 
         return;
 
@@ -2808,31 +2695,27 @@ function previewAdminPhoto(event){
         source.onload =
         function(){
 
-            const maxSide =
-                900;
+            const maxSide = 900;
 
 
             const ratio =
                 Math.min(
-
                     1,
-
                     maxSide /
                     Math.max(
                         source.naturalWidth,
                         source.naturalHeight
                     )
-
                 );
 
 
-            const photoCanvas =
+            const imageCanvas =
                 document.createElement(
                     "canvas"
                 );
 
 
-            photoCanvas.width =
+            imageCanvas.width =
                 Math.max(
                     1,
                     Math.round(
@@ -2842,7 +2725,7 @@ function previewAdminPhoto(event){
                 );
 
 
-            photoCanvas.height =
+            imageCanvas.height =
                 Math.max(
                     1,
                     Math.round(
@@ -2853,7 +2736,7 @@ function previewAdminPhoto(event){
 
 
             const context =
-                photoCanvas.getContext(
+                imageCanvas.getContext(
                     "2d"
                 );
 
@@ -2865,14 +2748,14 @@ function previewAdminPhoto(event){
                 0,
                 0,
 
-                photoCanvas.width,
-                photoCanvas.height
+                imageCanvas.width,
+                imageCanvas.height
 
             );
 
 
             selectedAdminPhotoData =
-                photoCanvas.toDataURL(
+                imageCanvas.toDataURL(
                     "image/jpeg",
                     0.72
                 );
@@ -2893,9 +2776,7 @@ function previewAdminPhoto(event){
                     "adminPhotoPreviewWrap"
                 )
                 .classList
-                .remove(
-                    "hidden"
-                );
+                .remove("hidden");
 
 
             document
@@ -2927,15 +2808,13 @@ function previewAdminPhoto(event){
     };
 
 
-    reader.readAsDataURL(
-        file
-    );
+    reader.readAsDataURL(file);
 
 }
 
 
 /* =================================================
-   ПОКАЗ СУЩЕСТВУЮЩЕГО ФОТО
+   ЗАГРУЗКА ФОТО В ПАНЕЛИ
 ================================================= */
 
 function loadExistingAdminPhoto(){
@@ -2959,10 +2838,8 @@ function loadExistingAdminPhoto(){
         preview.src =
             SITE_CONFIG.photo;
 
-
-        wrap.classList.remove(
-            "hidden"
-        );
+        wrap.classList
+            .remove("hidden");
 
     }
 
@@ -2970,7 +2847,43 @@ function loadExistingAdminPhoto(){
 
 
 /* =================================================
-   ОТКРЫТИЕ ПАНЕЛИ
+   ПОКАЗАТЬ / СКРЫТЬ ПОЛЕ НЕТ
+================================================= */
+
+function updateNoTextField(){
+
+    const selected =
+        document.querySelector(
+            'input[name="noRunsAway"]:checked'
+        );
+
+
+    const field =
+        document.getElementById(
+            "adminNoTextField"
+        );
+
+
+    if(
+        selected &&
+        selected.value === "no"
+    ){
+
+        field.classList
+            .remove("hidden");
+
+    }else{
+
+        field.classList
+            .add("hidden");
+
+    }
+
+}
+
+
+/* =================================================
+   ОТКРЫТЬ ПАНЕЛЬ
 ================================================= */
 
 function openAdmin(){
@@ -2993,29 +2906,10 @@ function openAdmin(){
 
     document
         .getElementById(
-            "adminSuccessText"
+            "adminGenderWord"
         )
         .value =
-        SITE_CONFIG.successText ||
-        DEFAULT_CONFIG.successText;
-
-
-    document
-        .getElementById(
-            "adminChoiceText"
-        )
-        .value =
-        SITE_CONFIG.choiceText ||
-        DEFAULT_CONFIG.choiceText;
-
-
-    document
-        .getElementById(
-            "adminAnswerText"
-        )
-        .value =
-        SITE_CONFIG.answerText ||
-        DEFAULT_CONFIG.answerText;
+        SITE_CONFIG.genderWord || "ввела";
 
 
     document
@@ -3026,16 +2920,65 @@ function openAdmin(){
         SITE_CONFIG.letter || "";
 
 
-    selectedAdminPhotoData =
-        null;
+    document
+        .getElementById(
+            "adminChoiceQuestion"
+        )
+        .value =
+        SITE_CONFIG.choiceQuestion ||
+        DEFAULT_CONFIG.choiceQuestion;
+
+
+    document
+        .getElementById(
+            "adminYesText"
+        )
+        .value =
+        SITE_CONFIG.yesText ||
+        DEFAULT_CONFIG.yesText;
+
+
+    document
+        .getElementById(
+            "adminNoText"
+        )
+        .value =
+        SITE_CONFIG.noText ||
+        DEFAULT_CONFIG.noText;
+
+
+    if(
+        SITE_CONFIG.noRunsAway === false
+    ){
+
+        document
+            .getElementById(
+                "noRunsAwayNo"
+            )
+            .checked = true;
+
+    }else{
+
+        document
+            .getElementById(
+                "noRunsAwayYes"
+            )
+            .checked = true;
+
+    }
+
+
+    updateNoTextField();
+
+
+    selectedAdminPhotoData = null;
 
 
     document
         .getElementById(
             "adminPhotoFile"
         )
-        .value =
-        "";
+        .value = "";
 
 
     loadExistingAdminPhoto();
@@ -3045,8 +2988,7 @@ function openAdmin(){
         .getElementById(
             "adminStatus"
         )
-        .textContent =
-        "";
+        .textContent = "";
 
 
     document
@@ -3054,9 +2996,7 @@ function openAdmin(){
             "configLink"
         )
         .classList
-        .add(
-            "hidden"
-        );
+        .add("hidden");
 
 
     document
@@ -3064,9 +3004,7 @@ function openAdmin(){
             "questionScreen"
         )
         .classList
-        .add(
-            "hidden"
-        );
+        .add("hidden");
 
 
     document
@@ -3074,15 +3012,13 @@ function openAdmin(){
             "adminScreen"
         )
         .classList
-        .remove(
-            "hidden"
-        );
+        .remove("hidden");
 
 }
 
 
 /* =================================================
-   ЗАКРЫТИЕ ПАНЕЛИ
+   ЗАКРЫТЬ ПАНЕЛЬ
 ================================================= */
 
 function closeAdmin(){
@@ -3092,9 +3028,7 @@ function closeAdmin(){
             "adminScreen"
         )
         .classList
-        .add(
-            "hidden"
-        );
+        .add("hidden");
 
 
     document
@@ -3102,17 +3036,14 @@ function closeAdmin(){
             "questionScreen"
         )
         .classList
-        .remove(
-            "hidden"
-        );
+        .remove("hidden");
 
 
     document
         .getElementById(
             "birthdayInput"
         )
-        .value =
-        "";
+        .value = "";
 
 }
 
@@ -3155,6 +3086,17 @@ function encodeConfig(config){
 
 function saveAdminSettings(){
 
+    const noRunsAwayRadio =
+        document.querySelector(
+            'input[name="noRunsAway"]:checked'
+        );
+
+
+    const noRunsAway =
+        !noRunsAwayRadio ||
+        noRunsAwayRadio.value === "yes";
+
+
     const config = {
 
         name:
@@ -3175,35 +3117,47 @@ function saveAdminSettings(){
                 .trim(),
 
 
-        successText:
+        genderWord:
             document
                 .getElementById(
-                    "adminSuccessText"
+                    "adminGenderWord"
                 )
                 .value
                 .trim(),
-
-
-        choiceText:
-            document
-                .getElementById(
-                    "adminChoiceText"
-                )
-                .value,
-
-
-        answerText:
-            document
-                .getElementById(
-                    "adminAnswerText"
-                )
-                .value,
 
 
         letter:
             document
                 .getElementById(
                     "adminLetter"
+                )
+                .value,
+
+
+        choiceQuestion:
+            document
+                .getElementById(
+                    "adminChoiceQuestion"
+                )
+                .value,
+
+
+        yesText:
+            document
+                .getElementById(
+                    "adminYesText"
+                )
+                .value,
+
+
+        noRunsAway:
+            noRunsAway,
+
+
+        noText:
+            document
+                .getElementById(
+                    "adminNoText"
                 )
                 .value,
 
@@ -3216,11 +3170,7 @@ function saveAdminSettings(){
     };
 
 
-    /* Проверка имени */
-
-    if(
-        !config.name
-    ){
+    if(!config.name){
 
         document
             .getElementById(
@@ -3234,13 +3184,10 @@ function saveAdminSettings(){
     }
 
 
-    /* Проверка даты */
-
     if(
-        !/^\d{2}\.\d{2}$/
-            .test(
-                config.birthday
-            )
+        !/^\d{2}\.\d{2}$/.test(
+            config.birthday
+        )
     ){
 
         document
@@ -3255,65 +3202,21 @@ function saveAdminSettings(){
     }
 
 
-    /* Проверка текста после даты */
-
-    if(
-        !config.successText
-    ){
+    if(!config.genderWord){
 
         document
             .getElementById(
                 "adminStatus"
             )
             .textContent =
-            "Текст после правильного ответа не может быть пустым.";
+            "Укажи слово «ввела» или «ввел».";
 
         return;
 
     }
 
 
-    /* Проверка вопроса */
-
-    if(
-        !config.choiceText.trim()
-    ){
-
-        document
-            .getElementById(
-                "adminStatus"
-            )
-            .textContent =
-            "Вопрос перед кнопками не может быть пустым.";
-
-        return;
-
-    }
-
-
-    /* Проверка текста после Да */
-
-    if(
-        !config.answerText.trim()
-    ){
-
-        document
-            .getElementById(
-                "adminStatus"
-            )
-            .textContent =
-            "Текст после нажатия «Да» не может быть пустым.";
-
-        return;
-
-    }
-
-
-    /* Проверка письма */
-
-    if(
-        !config.letter.trim()
-    ){
+    if(!config.letter.trim()){
 
         document
             .getElementById(
@@ -3327,11 +3230,52 @@ function saveAdminSettings(){
     }
 
 
-    /* Проверка фото */
+    if(!config.choiceQuestion.trim()){
+
+        document
+            .getElementById(
+                "adminStatus"
+            )
+            .textContent =
+            "Введи вопрос для кнопок.";
+
+        return;
+
+    }
+
+
+    if(!config.yesText.trim()){
+
+        document
+            .getElementById(
+                "adminStatus"
+            )
+            .textContent =
+            "Введи текст после нажатия на «Да».";
+
+        return;
+
+    }
+
 
     if(
-        !config.photo
+        config.noRunsAway === false &&
+        !config.noText.trim()
     ){
+
+        document
+            .getElementById(
+                "adminStatus"
+            )
+            .textContent =
+            "Введи текст после нажатия на «Нет».";
+
+        return;
+
+    }
+
+
+    if(!config.photo){
 
         document
             .getElementById(
@@ -3345,19 +3289,14 @@ function saveAdminSettings(){
     }
 
 
-    /* Создание ID */
-
     const configId =
         encodeConfig(
             config
         );
 
 
-    /* Создание ссылки */
-
     const url =
-        window.location.href
-            .split("?")[0] +
+        window.location.href.split("?")[0] +
         "?cfg=" +
         configId;
 
@@ -3376,9 +3315,8 @@ function saveAdminSettings(){
         url;
 
 
-    link.classList.remove(
-        "hidden"
-    );
+    link.classList
+        .remove("hidden");
 
 
     document
@@ -3392,7 +3330,7 @@ function saveAdminSettings(){
 
 
 /* =================================================
-   ЗАПУСК
+   ИНИЦИАЛИЗАЦИЯ
 ================================================= */
 
 applySiteConfig();
@@ -3401,7 +3339,7 @@ applySiteConfig();
 
 
 <!-- =================================================
-     СЕКРЕТНАЯ ПАНЕЛЬ НАСТРОЕК
+     ПАНЕЛЬ НАСТРОЕК
 ================================================= -->
 
 <section
@@ -3414,6 +3352,7 @@ applySiteConfig();
         <h2>
             ⚙️ Настройки сайта
         </h2>
+
 
         <p class="admin-note">
             Измени данные и получи ссылку
@@ -3455,81 +3394,22 @@ applySiteConfig();
         </div>
 
 
-        <!-- ТЕКСТ ПОСЛЕ ПРАВИЛЬНОГО ОТВЕТА -->
+        <!-- ВВЕЛА / ВВЕЛ -->
 
         <div class="admin-field">
 
-            <label for="adminSuccessText">
-                Текст после правильного ответа
+            <label for="adminGenderWord">
+                Какое слово показывать после правильного ответа?
             </label>
 
             <input
-                id="adminSuccessText"
+                id="adminGenderWord"
                 type="text"
-                placeholder="Например: Отлично! Ты ввела правильно ❤️"
+                placeholder="ввела"
             >
 
-            <small class="admin-help">
-
-                Здесь можно изменить
-                «ввела» на «ввел»
-                или написать полностью
-                свой текст.
-
-            </small>
-
-        </div>
-
-
-        <!-- ВОПРОС ДА / НЕТ -->
-
-        <div class="admin-field">
-
-            <label for="adminChoiceText">
-                Вопрос перед кнопками Да / Нет
-            </label>
-
-            <textarea
-                id="adminChoiceText"
-                placeholder="Ты хочешь, чтобы я к тебе приехал на выходные после твоего дня рождения? ❤️"
-            ></textarea>
-
-            <small class="admin-help">
-
-                Этот текст появляется
-                после письма перед кнопками.
-
-                Для переноса строки
-                можно использовать &lt;br&gt;.
-
-            </small>
-
-        </div>
-
-
-        <!-- ТЕКСТ ПОСЛЕ ДА -->
-
-        <div class="admin-field">
-
-            <label for="adminAnswerText">
-                Текст после нажатия «Да»
-            </label>
-
-            <textarea
-                id="adminAnswerText"
-                placeholder="Спасибо, что согласилась ❤️"
-            ></textarea>
-
-            <small class="admin-help">
-
-                Этот текст появляется
-                после нажатия кнопки «Да».
-
-                Для переноса строки
-                можно использовать &lt;br&gt;.
-
-                Кнопка «Нет» здесь не изменяется.
-
+            <small class="admin-small">
+                Например: «ввела» или «ввел».
             </small>
 
         </div>
@@ -3551,6 +3431,131 @@ applySiteConfig();
         </div>
 
 
+        <!-- ВОПРОС -->
+
+        <div class="admin-field">
+
+            <label for="adminChoiceQuestion">
+                Вопрос перед кнопками «Да / Нет»
+            </label>
+
+            <textarea
+                id="adminChoiceQuestion"
+                placeholder="Ты хочешь, чтобы я к тебе приехал?"
+            ></textarea>
+
+            <small class="admin-small">
+                Здесь можно полностью изменить текст вопроса.
+            </small>
+
+        </div>
+
+
+        <!-- ТЕКСТ ПОСЛЕ ДА -->
+
+        <div class="admin-field">
+
+            <label for="adminYesText">
+                Текст после нажатия на кнопку «Да»
+            </label>
+
+            <textarea
+                id="adminYesText"
+                placeholder="Спасибо, что согласилась ❤️"
+            ></textarea>
+
+        </div>
+
+
+        <!-- УБЕГАЕТ ЛИ НЕТ -->
+
+        <div class="admin-field">
+
+            <label>
+                Ты хочешь, чтобы кнопка «Нет» убегала?
+            </label>
+
+
+            <div class="radio-row">
+
+                <label class="radio-option">
+
+                    <input
+                        id="noRunsAwayYes"
+                        type="radio"
+                        name="noRunsAway"
+                        value="yes"
+                        checked
+                        onchange="updateNoTextField()"
+                    >
+
+                    <span>
+                        Да
+                    </span>
+
+                </label>
+
+
+                <label class="radio-option">
+
+                    <input
+                        id="noRunsAwayNo"
+                        type="radio"
+                        name="noRunsAway"
+                        value="no"
+                        onchange="updateNoTextField()"
+                    >
+
+                    <span>
+                        Нет
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <small class="admin-small">
+
+                Если выбрать «Да», кнопка «Нет»
+                будет работать как раньше — убегать,
+                а кнопка «Да» увеличиваться.
+
+                Если выбрать «Нет», кнопка «Нет»
+                перестанет убегать и после её нажатия
+                появится заданный ниже текст.
+
+            </small>
+
+        </div>
+
+
+        <!-- ТЕКСТ ПОСЛЕ НЕТ -->
+
+        <div
+            id="adminNoTextField"
+            class="admin-field hidden"
+        >
+
+            <label for="adminNoText">
+                Текст после нажатия на кнопку «Нет»
+            </label>
+
+            <textarea
+                id="adminNoText"
+                placeholder="Текст, который появится после нажатия на «Нет»"
+            ></textarea>
+
+            <small class="admin-small">
+
+                Этот текст будет показан только если
+                выше выбрано «Нет».
+
+            </small>
+
+        </div>
+
+
         <!-- ФОТО -->
 
         <div class="admin-field">
@@ -3566,13 +3571,13 @@ applySiteConfig();
                 onchange="previewAdminPhoto(event)"
             >
 
-            <small class="admin-help">
+            <small class="admin-small">
 
-                Выбери фотографию прямо
-                с телефона или компьютера.
+                Выбери фотографию прямо с телефона
+                или компьютера.
 
-                Она будет использоваться
-                для сборки из сердечек.
+                Она будет использоваться для сборки
+                из сердечек.
 
             </small>
 
@@ -3636,8 +3641,8 @@ applySiteConfig();
             "
         >
 
-            ⚠️ В этой версии настройки и выбранное
-            фото сохраняются в браузере.
+            ⚠️ В этой версии настройки и выбранное фото
+            сохраняются в браузере.
 
             Полученная ссылка будет работать
             на этом же устройстве и в этом же браузере.
