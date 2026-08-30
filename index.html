@@ -1185,41 +1185,29 @@ const DEFAULT_CONFIG = {
 */
 function getSiteConfig(){
     const params = new URLSearchParams(window.location.search);
-    const encoded = params.get("cfg");
+    const configId = params.get("cfg");
 
-    if(!encoded){
+    if(!configId){
         return {...DEFAULT_CONFIG};
     }
 
     try{
-        let base64 = encoded
-            .replace(/-/g,"+")
-            .replace(/_/g,"/");
+        const saved = localStorage.getItem("site_config_" + configId);
 
-        while(base64.length % 4){
-            base64 += "=";
+        if(!saved){
+            console.warn("Настройки для этой ссылки не найдены.");
+            return {...DEFAULT_CONFIG};
         }
-
-        const binary = atob(base64);
-        const bytes = Uint8Array.from(
-            binary,
-            char => char.charCodeAt(0)
-        );
-
-        const json = new TextDecoder().decode(bytes);
-
-        const parsed = JSON.parse(json);
 
         return {
             ...DEFAULT_CONFIG,
-            ...parsed
+            ...JSON.parse(saved)
         };
     }catch(error){
-        console.error("Не удалось прочитать настройки:", error);
+        console.error("Ошибка загрузки настроек:", error);
         return {...DEFAULT_CONFIG};
     }
 }
-
 const SITE_CONFIG = getSiteConfig();
 
 const correctBirthday = SITE_CONFIG.birthday;
@@ -3084,24 +3072,18 @@ function closeAdmin(){
 }
 
 function encodeConfig(config){
-    const json = JSON.stringify(config);
-    const bytes = new TextEncoder().encode(json);
+    const id =
+        Date.now().toString(36) +
+        "-" +
+        Math.random().toString(36).slice(2, 10);
 
-    let binary = "";
-    const chunkSize = 0x8000;
+    localStorage.setItem(
+        "site_config_" + id,
+        JSON.stringify(config)
+    );
 
-    for(let i = 0; i < bytes.length; i += chunkSize){
-        binary += String.fromCharCode(
-            ...bytes.subarray(i, i + chunkSize)
-        );
-    }
-
-    return btoa(binary)
-        .replace(/\+/g,"-")
-        .replace(/\//g,"_")
-        .replace(/=+$/,"");
+    return id;
 }
-
 function saveAdminSettings(){
     const config = {
         name:
@@ -3141,18 +3123,12 @@ function saveAdminSettings(){
             "Выбери фотографию.";
         return;
     }
-const encoded = encodeConfig(config);
+const configId = encodeConfig(config);
 
     const url =
         window.location.href.split("?")[0] +
         "?cfg=" +
-        encoded;
-
-    if(url.length > 1500000){
-        document.getElementById("adminStatus").textContent =
-            "Фото слишком большое. Выбери другое фото.";
-        return;
-    }
+        configId;
 
     const link = document.getElementById("configLink");
 
@@ -3225,6 +3201,10 @@ applySiteConfig();
         </div>
 
         <div id="adminStatus"></div>
+        <small style="display:block;margin-top:12px;color:#ffd7a8;line-height:1.45">
+⚠️ В этой версии настройки и выбранное фото сохраняются в браузере.
+Полученная ссылка будет работать на этом же устройстве и в этом же браузере.
+</small>
         <a id="configLink" class="config-link hidden" href="#" target="_blank"></a>
     </div>
 </section>
