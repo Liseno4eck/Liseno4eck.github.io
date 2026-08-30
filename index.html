@@ -78,6 +78,7 @@ button:hover{
 #choiceScreen,
 #answerScreen,
 #replyScreen{
+
     background:
         radial-gradient(
             circle at center,
@@ -85,6 +86,7 @@ button:hover{
             #251064 45%,
             #08001c 100%
         );
+
 }
 
 
@@ -594,6 +596,7 @@ textarea::placeholder{
     .reply-box h1{
         font-size:32px;
     }
+
 }
 
 
@@ -859,7 +862,7 @@ textarea::placeholder{
 
 
 <!-- =================================================
-     ОТВЕТ
+     ОТВЕТ ПОСЛЕ ДА
 ================================================= -->
 
 <section
@@ -989,6 +992,9 @@ const DEFAULT_CONFIG = {
     choiceText:
         "Ты хочешь, чтобы я к тебе приехал<br>на выходные после твоего дня рождения? ❤️",
 
+    answerText:
+        "Спасибо, что согласилась ❤️<br><br>На выходных я приеду к тебе ориентировочно после 12.",
+
     letter:
 `Дорогая любимая Лера
 
@@ -1006,7 +1012,7 @@ const DEFAULT_CONFIG = {
 
 
 /* =================================================
-   ПОЛУЧЕНИЕ НАСТРОЕК ИЗ ССЫЛКИ
+   ПОЛУЧЕНИЕ НАСТРОЕК
 ================================================= */
 
 function getSiteConfig(){
@@ -1015,6 +1021,7 @@ function getSiteConfig(){
         new URLSearchParams(
             window.location.search
         );
+
 
     const configId =
         params.get("cfg");
@@ -1044,6 +1051,7 @@ function getSiteConfig(){
                 "Настройки для этой ссылки не найдены."
             );
 
+
             return {
                 ...DEFAULT_CONFIG
             };
@@ -1067,6 +1075,7 @@ function getSiteConfig(){
             "Ошибка загрузки настроек:",
             error
         );
+
 
         return {
             ...DEFAULT_CONFIG
@@ -1201,7 +1210,7 @@ function openChoiceScreen(){
 
 
 /* =================================================
-   НЕТ
+   НЕТ — НЕ ИЗМЕНЕНО
 ================================================= */
 
 function answerNo(){
@@ -1306,9 +1315,8 @@ function answerYes(){
         )
         .innerHTML =
 
-        "Спасибо, что согласилась ❤️<br><br>" +
-
-        "На выходных я приеду к тебе ориентировочно после 12.";
+        SITE_CONFIG.answerText ||
+        DEFAULT_CONFIG.answerText;
 
 
     showScreen(
@@ -1915,7 +1923,7 @@ function drawHeart(
 
 
 /* =================================================
-   РИСОВАНИЕ ФОТО
+   РИСОВАНИЕ
 ================================================= */
 
 function drawHeartField(){
@@ -2008,7 +2016,7 @@ function drawHeartField(){
 
 
 /* =================================================
-   ОТКРЫТИЕ ФОТО
+   ОТКРЫТИЕ ЧАСТИ ФОТО
 ================================================= */
 
 function revealPhotoPart(){
@@ -2329,7 +2337,7 @@ function finishPhoto(){
 
 
 /* =================================================
-   КЛИК
+   КЛИК ПО ФОТО
 ================================================= */
 
 canvas.addEventListener(
@@ -2632,7 +2640,7 @@ document
 
 function applySiteConfig(){
 
-    /* Текст письма */
+    /* Письмо */
 
     const letter =
         document.getElementById(
@@ -2686,6 +2694,23 @@ function applySiteConfig(){
 
     document.title =
         `Для ${SITE_CONFIG.name} ❤️`;
+
+
+    /* Ответ после Да */
+
+    const answerText =
+        document.getElementById(
+            "answerText"
+        );
+
+
+    if(answerText){
+
+        answerText.innerHTML =
+            SITE_CONFIG.answerText ||
+            DEFAULT_CONFIG.answerText;
+
+    }
 
 
     /* Поле ответа */
@@ -2801,13 +2826,13 @@ function previewAdminPhoto(event){
                 );
 
 
-            const canvas =
+            const photoCanvas =
                 document.createElement(
                     "canvas"
                 );
 
 
-            canvas.width =
+            photoCanvas.width =
                 Math.max(
                     1,
                     Math.round(
@@ -2817,7 +2842,7 @@ function previewAdminPhoto(event){
                 );
 
 
-            canvas.height =
+            photoCanvas.height =
                 Math.max(
                     1,
                     Math.round(
@@ -2828,7 +2853,7 @@ function previewAdminPhoto(event){
 
 
             const context =
-                canvas.getContext(
+                photoCanvas.getContext(
                     "2d"
                 );
 
@@ -2840,14 +2865,14 @@ function previewAdminPhoto(event){
                 0,
                 0,
 
-                canvas.width,
-                canvas.height
+                photoCanvas.width,
+                photoCanvas.height
 
             );
 
 
             selectedAdminPhotoData =
-                canvas.toDataURL(
+                photoCanvas.toDataURL(
                     "image/jpeg",
                     0.72
                 );
@@ -2986,6 +3011,15 @@ function openAdmin(){
 
     document
         .getElementById(
+            "adminAnswerText"
+        )
+        .value =
+        SITE_CONFIG.answerText ||
+        DEFAULT_CONFIG.answerText;
+
+
+    document
+        .getElementById(
             "adminLetter"
         )
         .value =
@@ -3084,7 +3118,7 @@ function closeAdmin(){
 
 
 /* =================================================
-   СОЗДАНИЕ ID КОНФИГУРАЦИИ
+   СОЗДАНИЕ ID
 ================================================= */
 
 function encodeConfig(config){
@@ -3158,6 +3192,14 @@ function saveAdminSettings(){
                 .value,
 
 
+        answerText:
+            document
+                .getElementById(
+                    "adminAnswerText"
+                )
+                .value,
+
+
         letter:
             document
                 .getElementById(
@@ -3174,7 +3216,7 @@ function saveAdminSettings(){
     };
 
 
-    /* Имя */
+    /* Проверка имени */
 
     if(
         !config.name
@@ -3192,7 +3234,7 @@ function saveAdminSettings(){
     }
 
 
-    /* Дата */
+    /* Проверка даты */
 
     if(
         !/^\d{2}\.\d{2}$/
@@ -3213,7 +3255,7 @@ function saveAdminSettings(){
     }
 
 
-    /* Текст после даты */
+    /* Проверка текста после даты */
 
     if(
         !config.successText
@@ -3231,7 +3273,7 @@ function saveAdminSettings(){
     }
 
 
-    /* Вопрос */
+    /* Проверка вопроса */
 
     if(
         !config.choiceText.trim()
@@ -3249,7 +3291,25 @@ function saveAdminSettings(){
     }
 
 
-    /* Письмо */
+    /* Проверка текста после Да */
+
+    if(
+        !config.answerText.trim()
+    ){
+
+        document
+            .getElementById(
+                "adminStatus"
+            )
+            .textContent =
+            "Текст после нажатия «Да» не может быть пустым.";
+
+        return;
+
+    }
+
+
+    /* Проверка письма */
 
     if(
         !config.letter.trim()
@@ -3267,7 +3327,7 @@ function saveAdminSettings(){
     }
 
 
-    /* Фото */
+    /* Проверка фото */
 
     if(
         !config.photo
@@ -3285,7 +3345,7 @@ function saveAdminSettings(){
     }
 
 
-    /* Создаём ID */
+    /* Создание ID */
 
     const configId =
         encodeConfig(
@@ -3293,7 +3353,7 @@ function saveAdminSettings(){
         );
 
 
-    /* Создаём ссылку */
+    /* Создание ссылки */
 
     const url =
         window.location.href
@@ -3395,7 +3455,7 @@ applySiteConfig();
         </div>
 
 
-        <!-- ТЕКСТ ПОСЛЕ ДАТЫ -->
+        <!-- ТЕКСТ ПОСЛЕ ПРАВИЛЬНОГО ОТВЕТА -->
 
         <div class="admin-field">
 
@@ -3410,8 +3470,12 @@ applySiteConfig();
             >
 
             <small class="admin-help">
-                Здесь можно изменить «ввела» на «ввел»
-                или полностью изменить этот текст.
+
+                Здесь можно изменить
+                «ввела» на «ввел»
+                или написать полностью
+                свой текст.
+
             </small>
 
         </div>
@@ -3431,10 +3495,41 @@ applySiteConfig();
             ></textarea>
 
             <small class="admin-help">
-                Этот текст появится после письма,
-                перед кнопками «Да» и «Нет».
-                Для переноса строки можно использовать
-                &lt;br&gt;.
+
+                Этот текст появляется
+                после письма перед кнопками.
+
+                Для переноса строки
+                можно использовать &lt;br&gt;.
+
+            </small>
+
+        </div>
+
+
+        <!-- ТЕКСТ ПОСЛЕ ДА -->
+
+        <div class="admin-field">
+
+            <label for="adminAnswerText">
+                Текст после нажатия «Да»
+            </label>
+
+            <textarea
+                id="adminAnswerText"
+                placeholder="Спасибо, что согласилась ❤️"
+            ></textarea>
+
+            <small class="admin-help">
+
+                Этот текст появляется
+                после нажатия кнопки «Да».
+
+                Для переноса строки
+                можно использовать &lt;br&gt;.
+
+                Кнопка «Нет» здесь не изменяется.
+
             </small>
 
         </div>
@@ -3540,11 +3635,13 @@ applySiteConfig();
                 line-height:1.45;
             "
         >
+
             ⚠️ В этой версии настройки и выбранное
             фото сохраняются в браузере.
 
             Полученная ссылка будет работать
             на этом же устройстве и в этом же браузере.
+
         </small>
 
 
