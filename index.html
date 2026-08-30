@@ -12,7 +12,6 @@
 
 <title>Для тебя ❤️</title>
 
-
 <style>
 
 *{
@@ -21,58 +20,36 @@
     padding:0;
 }
 
-
 html,
 body{
-
     width:100%;
     height:100%;
-
     overflow:hidden;
-
     font-family:Arial,sans-serif;
-
     color:white;
-
     background:#08001c;
-
 }
-
 
 .screen{
-
     position:fixed;
-
     inset:0;
-
     width:100%;
     height:100%;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     padding:20px;
-
 }
-
 
 .hidden{
     display:none!important;
 }
 
-
 button{
-
     margin-top:20px;
-
     padding:15px 30px;
-
     border:0;
-
     border-radius:15px;
-
     color:white;
 
     background:
@@ -83,9 +60,7 @@ button{
         );
 
     font-size:18px;
-
     font-weight:bold;
-
     cursor:pointer;
 
     box-shadow:
@@ -93,20 +68,16 @@ button{
         0 0 25px rgba(0,150,255,.6);
 
     transition:.3s;
-
 }
-
 
 button:hover{
     transform:scale(1.05);
 }
 
-
 #questionScreen,
 #choiceScreen,
 #answerScreen,
 #replyScreen{
-
     background:
         radial-gradient(
             circle at center,
@@ -114,7 +85,6 @@ button:hover{
             #251064 45%,
             #08001c 100%
         );
-
 }
 
 
@@ -124,29 +94,21 @@ button:hover{
 
 .question-box,
 .reply-box{
-
     width:min(92%,650px);
-
     text-align:center;
-
 }
-
 
 .question-box h1,
 .choice-box h1,
 .answer-box h1,
 .reply-box h1{
-
     text-shadow:
         0 0 10px #fff,
         0 0 25px #8d5cff,
         0 0 50px #4c00ff;
-
 }
 
-
 .question-box h1{
-
     font-size:
         clamp(
             28px,
@@ -155,69 +117,47 @@ button:hover{
         );
 
     margin-bottom:30px;
-
 }
-
 
 input,
 textarea{
-
     width:100%;
-
     padding:17px 20px;
-
     border-radius:15px;
-
     border:2px solid #7c4dff;
-
     outline:none;
 
     background:
         rgba(255,255,255,.08);
 
     color:white;
-
     font-size:20px;
 
     box-shadow:
         0 0 10px #6030ff,
-        inset 0 0 10px
-        rgba(120,70,255,.2);
-
+        inset 0 0 10px rgba(120,70,255,.2);
 }
-
 
 input{
     text-align:center;
 }
 
-
 textarea{
-
     min-height:180px;
-
     resize:none;
-
     text-align:left;
-
 }
-
 
 input::placeholder,
 textarea::placeholder{
     color:#c9baff;
 }
 
-
 #error,
 #sendStatus{
-
     margin-top:15px;
-
     min-height:25px;
-
     color:#ffb0dc;
-
 }
 
 
@@ -226,7 +166,6 @@ textarea::placeholder{
 ========================= */
 
 #successScreen{
-
     text-align:center;
 
     background:
@@ -235,17 +174,13 @@ textarea::placeholder{
             #5526cc,
             #170842 75%
         );
-
 }
-
 
 .success-text{
     animation:appear 1s ease;
 }
 
-
 .success-text h2{
-
     font-size:
         clamp(
             28px,
@@ -256,18 +191,12 @@ textarea::placeholder{
     text-shadow:
         0 0 10px #8d5cff,
         0 0 30px #4c00ff;
-
 }
 
-
 .success-text p{
-
     margin-top:15px;
-
     color:#d7caff;
-
     font-size:18px;
-
 }
 
 
@@ -276,9 +205,7 @@ textarea::placeholder{
 ========================= */
 
 #letterScreen{
-
     overflow-y:auto;
-
     padding:30px 15px;
 
     background:
@@ -287,16 +214,12 @@ textarea::placeholder{
             #4b24b8,
             #100026 80%
         );
-
 }
 
-
 .letter{
-
     position:relative;
 
     width:min(92%,650px);
-
     max-height:90vh;
 
     padding:45px 35px;
@@ -313,11 +236,8 @@ textarea::placeholder{
     border-radius:8px;
 
     box-shadow:
-        0 0 20px
-        rgba(255,255,255,.2),
-
-        0 0 60px
-        rgba(90,20,255,.5);
+        0 0 20px rgba(255,255,255,.2),
+        0 0 60px rgba(90,20,255,.5);
 
     transform:rotate(-1deg);
 
@@ -325,57 +245,33 @@ textarea::placeholder{
         letterAppear 1s ease;
 
     overflow-y:auto;
-
 }
-
 
 .letter::before{
-
     content:"💌";
-
     position:absolute;
-
     top:12px;
-
     right:18px;
-
     font-size:28px;
-
 }
-
 
 .letter h2{
-
     text-align:center;
-
     margin-bottom:25px;
-
     color:#6c2698;
-
     font-size:30px;
-
 }
-
 
 .letter-text{
-
     white-space:pre-line;
-
     font-family:Georgia,serif;
-
     font-size:19px;
-
     line-height:1.7;
-
 }
 
-
 .letter button{
-
     display:block;
-
     margin:30px auto 0;
-
 }
 
 
@@ -384,19 +280,14 @@ textarea::placeholder{
 ========================= */
 
 .choice-box{
-
     width:min(92%,750px);
-
     text-align:center;
 
     animation:
         finalAppear 1s ease;
-
 }
 
-
 .choice-box h1{
-
     font-size:
         clamp(
             28px,
@@ -405,47 +296,30 @@ textarea::placeholder{
         );
 
     line-height:1.25;
-
     margin-bottom:35px;
-
 }
-
 
 .choice-buttons{
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     gap:20px;
-
     flex-wrap:wrap;
-
     position:relative;
-
     min-height:90px;
-
 }
-
 
 .choice-buttons button{
     min-width:150px;
 }
 
-
 #noButton{
     z-index:5;
 }
 
-
 #yesButton{
-
     z-index:6;
-
     transform-origin:center;
-
 }
 
 
@@ -454,19 +328,14 @@ textarea::placeholder{
 ========================= */
 
 .answer-box{
-
     width:min(92%,750px);
-
     text-align:center;
 
     animation:
         finalAppear 1s ease;
-
 }
 
-
 .answer-box h1{
-
     font-size:
         clamp(
             28px,
@@ -475,58 +344,35 @@ textarea::placeholder{
         );
 
     line-height:1.3;
-
 }
 
-
 .answer-heart{
-
     display:block;
-
     margin-top:25px;
-
     font-size:80px;
 
     animation:
         heartBeat 1.2s infinite;
-
 }
-
 
 .next-button{
     margin-top:35px;
 }
 
 
-/* =================================================
-   ЭКРАН ФОТОГРАФИИ
-================================================= */
+/* =========================
+   ФОТО
+========================= */
 
 #photoScreen{
-
     padding:0;
-
     background:#050505;
-
     overflow:hidden;
-
     display:block;
-
 }
 
-
-/*
-   Canvas теперь занимает весь экран
-   только как рабочая область.
-
-   Сама фотография находится
-   в центральном прямоугольнике.
-*/
-
 #heartCanvas{
-
     position:absolute;
-
     inset:0;
 
     width:100%;
@@ -535,18 +381,10 @@ textarea::placeholder{
     display:block;
 
     cursor:pointer;
-
     touch-action:none;
-
 }
 
-
-/* =========================
-   ЗАГОЛОВОК
-========================= */
-
 .photo-title{
-
     position:absolute;
 
     top:
@@ -576,16 +414,9 @@ textarea::placeholder{
         0 0 20px #000;
 
     pointer-events:none;
-
 }
 
-
-/* =========================
-   ПОДСКАЗКА
-========================= */
-
 .photo-hint{
-
     position:absolute;
 
     left:0;
@@ -615,16 +446,9 @@ textarea::placeholder{
 
     animation:
         pulseHint 1.5s infinite;
-
 }
 
-
-/* =========================
-   КНОПКА
-========================= */
-
 #pleasantButton{
-
     position:absolute;
 
     z-index:20;
@@ -652,27 +476,18 @@ textarea::placeholder{
 
     animation:
         finalAppear .8s ease;
-
 }
 
-
 #pleasantButton:hover{
-
     transform:
         translateX(-50%)
         scale(1.05);
-
 }
 
-
 .reply-box p{
-
     margin:20px 0;
-
     color:#d7caff;
-
     font-size:18px;
-
 }
 
 
@@ -681,80 +496,54 @@ textarea::placeholder{
 ========================= */
 
 @keyframes appear{
-
     from{
-
         opacity:0;
-
-        transform:
-            scale(.8);
-
+        transform:scale(.8);
     }
 
     to{
-
         opacity:1;
-
-        transform:
-            scale(1);
-
+        transform:scale(1);
     }
-
 }
 
-
 @keyframes letterAppear{
-
     from{
-
         opacity:0;
 
         transform:
             translateY(50px)
             rotate(-5deg);
-
     }
 
     to{
-
         opacity:1;
 
         transform:
             translateY(0)
             rotate(-1deg);
-
     }
-
 }
 
-
 @keyframes finalAppear{
-
     from{
-
         opacity:0;
 
         transform:
             scale(.5)
             translateY(40px);
-
     }
 
     to{
-
         opacity:1;
 
         transform:
             scale(1)
             translateY(0);
-
     }
-
 }
 
-
 @keyframes heartBeat{
-
     0%,100%{
         transform:scale(1);
     }
@@ -762,12 +551,9 @@ textarea::placeholder{
     50%{
         transform:scale(1.25);
     }
-
 }
 
-
 @keyframes pulseHint{
-
     0%,100%{
         opacity:.55;
     }
@@ -775,26 +561,23 @@ textarea::placeholder{
     50%{
         opacity:1;
     }
-
 }
 
+
+/* =========================
+   АДАПТАЦИЯ
+========================= */
 
 @media(max-width:600px){
 
     .letter{
-
         padding:35px 22px;
-
         min-height:450px;
-
     }
 
     .letter-text{
-
         font-size:17px;
-
         line-height:1.6;
-
     }
 
     .letter h2{
@@ -802,112 +585,154 @@ textarea::placeholder{
     }
 
     button{
-
         font-size:16px;
-
         padding:14px 25px;
-
     }
 
     .choice-box h1,
     .answer-box h1,
     .reply-box h1{
-
         font-size:32px;
-
     }
-
 }
-
 
 
 /* =================================================
-   СЕКРЕТНАЯ ПАНЕЛЬ НАСТРОЕК
-   ================================================= */
+   СЕКРЕТНАЯ ПАНЕЛЬ
+================================================= */
+
 #adminScreen{
+
     background:
-        radial-gradient(circle at center,#3c1b8f 0%,#100022 80%);
+        radial-gradient(
+            circle at center,
+            #3c1b8f 0%,
+            #100022 80%
+        );
+
     overflow-y:auto;
+
     align-items:flex-start;
+
     padding:25px 15px;
 }
+
 .admin-box{
+
     width:min(94%,760px);
+
     max-height:92vh;
+
     overflow-y:auto;
+
     padding:30px;
+
     border-radius:22px;
-    background:rgba(20,10,50,.96);
-    border:1px solid rgba(180,130,255,.35);
-    box-shadow:0 0 45px rgba(90,30,255,.45);
+
+    background:
+        rgba(20,10,50,.96);
+
+    border:
+        1px solid
+        rgba(180,130,255,.35);
+
+    box-shadow:
+        0 0 45px
+        rgba(90,30,255,.45);
 }
+
 .admin-box h2{
     text-align:center;
     margin-bottom:10px;
 }
+
 .admin-note{
     text-align:center;
     color:#cfc2ff;
     margin-bottom:25px;
 }
+
 .admin-field{
     margin-bottom:18px;
 }
+
 .admin-field label{
     display:block;
     margin-bottom:8px;
     font-weight:bold;
 }
+
 .admin-field input,
 .admin-field textarea{
     width:100%;
 }
+
 .admin-field textarea{
     min-height:130px;
 }
+
+.admin-help{
+    display:block;
+    margin-top:7px;
+    color:#bdb0e8;
+    line-height:1.4;
+}
+
 .admin-actions{
     display:flex;
     gap:12px;
     flex-wrap:wrap;
     justify-content:center;
 }
+
 .admin-actions button{
     margin-top:5px;
 }
+
 #adminStatus{
     min-height:25px;
     text-align:center;
     margin-top:15px;
     color:#baffd5;
 }
+
 .config-link{
     display:block;
     margin-top:15px;
     padding:12px;
     border-radius:12px;
-    background:rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.08);
+
     color:#fff;
+
     word-break:break-all;
+
     text-decoration:none;
 }
-@media(max-width:600px){
-    .admin-box{padding:22px 17px;}
-}
-
 
 #adminPhotoFile{
     padding:10px;
     cursor:pointer;
 }
+
 #adminPhotoPreview{
     display:block;
     margin:0 auto;
 }
 
+@media(max-width:600px){
+
+    .admin-box{
+        padding:22px 17px;
+    }
+
+}
+
 </style>
 
 </head>
-
 
 <body>
 
@@ -955,7 +780,7 @@ textarea::placeholder{
 
     <div class="success-text">
 
-        <h2>
+        <h2 id="successText">
             Отлично! Ты ввела правильно ❤️
         </h2>
 
@@ -983,7 +808,10 @@ textarea::placeholder{
             Для тебя 💌
         </h2>
 
-        <div id="letterText" class="letter-text"></div>
+        <div
+            id="letterText"
+            class="letter-text"
+        ></div>
 
         <button onclick="openChoiceScreen()">
             Дальше ❤️
@@ -995,7 +823,7 @@ textarea::placeholder{
 
 
 <!-- =================================================
-     ВОПРОС
+     ВОПРОС ДА / НЕТ
 ================================================= -->
 
 <section
@@ -1005,14 +833,7 @@ textarea::placeholder{
 
     <div class="choice-box">
 
-        <h1>
-
-            Ты хочешь, чтобы я к тебе приехал<br>
-
-            на выходные после твоего дня рождения? ❤️
-
-        </h1>
-
+        <h1 id="choiceText"></h1>
 
         <div class="choice-buttons">
 
@@ -1022,7 +843,6 @@ textarea::placeholder{
             >
                 Да ❤️
             </button>
-
 
             <button
                 id="noButton"
@@ -1078,11 +898,9 @@ textarea::placeholder{
 
     <canvas id="heartCanvas"></canvas>
 
-
     <div class="photo-title">
         Ещё один сюрприз ❤️
     </div>
-
 
     <div
         id="photoHint"
@@ -1090,7 +908,6 @@ textarea::placeholder{
     >
         Нажимай на экран — фотография будет собираться из сердечек ❤️
     </div>
-
 
     <button
         id="pleasantButton"
@@ -1121,17 +938,14 @@ textarea::placeholder{
             Напиши мне что-нибудь в ответ 💌
         </p>
 
-
         <textarea
             id="replyText"
             placeholder="Напиши здесь свой ответ..."
         ></textarea>
 
-
         <button onclick="sendPersonalReply()">
             Отправить ❤️
         </button>
-
 
         <div id="sendStatus"></div>
 
@@ -1140,11 +954,7 @@ textarea::placeholder{
 </section>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-
-
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
 
@@ -1162,12 +972,23 @@ emailjs.init({
 
 
 /* =================================================
-   НАСТРОЙКИ
+   НАСТРОЙКИ ПО УМОЛЧАНИЮ
 ================================================= */
 
 const DEFAULT_CONFIG = {
-    name: "Лера",
-    birthday: "01.10",
+
+    name:
+        "Лера",
+
+    birthday:
+        "01.10",
+
+    successText:
+        "Отлично! Ты ввела правильно ❤️",
+
+    choiceText:
+        "Ты хочешь, чтобы я к тебе приехал<br>на выходные после твоего дня рождения? ❤️",
+
     letter:
 `Дорогая любимая Лера
 
@@ -1177,59 +998,104 @@ const DEFAULT_CONFIG = {
 
 Я очень рад, что этот день настал и у меня для тебя подготовлен особый подарок, который
 я готовил в течение всего месяца специально для тебя.`,
-    photo: "foto.jpg"};
 
-/*
-   Настройки можно передавать через ссылку:
-   ?cfg=<base64url-код конфигурации; фото автоматически уменьшается и встраивается в ссылку>
-*/
+    photo:
+        "foto.jpg"
+
+};
+
+
+/* =================================================
+   ПОЛУЧЕНИЕ НАСТРОЕК ИЗ ССЫЛКИ
+================================================= */
+
 function getSiteConfig(){
-    const params = new URLSearchParams(window.location.search);
-    const configId = params.get("cfg");
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const configId =
+        params.get("cfg");
+
 
     if(!configId){
-        return {...DEFAULT_CONFIG};
-    }
-
-    try{
-        const saved = localStorage.getItem("site_config_" + configId);
-
-        if(!saved){
-            console.warn("Настройки для этой ссылки не найдены.");
-            return {...DEFAULT_CONFIG};
-        }
 
         return {
-            ...DEFAULT_CONFIG,
-            ...JSON.parse(saved)
+            ...DEFAULT_CONFIG
         };
-    }catch(error){
-        console.error("Ошибка загрузки настроек:", error);
-        return {...DEFAULT_CONFIG};
+
     }
+
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                "site_config_" +
+                configId
+            );
+
+
+        if(!saved){
+
+            console.warn(
+                "Настройки для этой ссылки не найдены."
+            );
+
+            return {
+                ...DEFAULT_CONFIG
+            };
+
+        }
+
+
+        return {
+
+            ...DEFAULT_CONFIG,
+
+            ...JSON.parse(saved)
+
+        };
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Ошибка загрузки настроек:",
+            error
+        );
+
+        return {
+            ...DEFAULT_CONFIG
+        };
+
+    }
+
 }
-const SITE_CONFIG = getSiteConfig();
-
-const correctBirthday = SITE_CONFIG.birthday;
-const PHOTO_URL = SITE_CONFIG.photo;
 
 
-/*
-   Размер сердечка.
+const SITE_CONFIG =
+    getSiteConfig();
 
-   5 = больше сердечек
-   6 = хороший вариант для телефона
-   7 = меньше сердечек
-*/
+
+const correctBirthday =
+    SITE_CONFIG.birthday;
+
+
+const PHOTO_URL =
+    SITE_CONFIG.photo;
+
+
+/* =================================================
+   НАСТРОЙКИ СЕРДЕЧЕК
+================================================= */
 
 const HEART_SIZE =
     6;
 
-
-/*
-   За одно нажатие
-   появляется 12.5%.
-*/
 
 const REVEAL_PER_CLICK =
     0.125;
@@ -1277,6 +1143,7 @@ function checkBirthday(){
 
 
         setTimeout(
+
             function(){
 
                 showScreen(
@@ -1285,11 +1152,14 @@ function checkBirthday(){
                 );
 
             },
+
             2500
+
         );
 
+    }
 
-    }else{
+    else{
 
         error.innerHTML =
             "Хмм... Кажется, ответ неправильный 😏";
@@ -1321,10 +1191,8 @@ function openChoiceScreen(){
     noButton.style.position =
         "";
 
-
     noButton.style.left =
         "";
-
 
     noButton.style.top =
         "";
@@ -1452,7 +1320,7 @@ function answerYes(){
 
 
 /* =================================================
-   ФОТО ЭКРАН
+   ФОТО
 ================================================= */
 
 function openPhotoScreen(){
@@ -1487,10 +1355,6 @@ function openPhotoScreen(){
 }
 
 
-/* =================================================
-   ФОТОГРАФИЯ
-================================================= */
-
 const canvas =
     document
         .getElementById(
@@ -1509,22 +1373,17 @@ const ctx =
 
 let hearts = [];
 
-
 let imageReady =
     false;
-
 
 let revealedCount =
     0;
 
-
 let targetCount =
     0;
 
-
 let assembling =
     false;
-
 
 let animationFrame =
     null;
@@ -1537,10 +1396,6 @@ const photo =
 photo.src =
     PHOTO_URL;
 
-
-/* =================================================
-   ЗАГРУЗКА ФОТО
-================================================= */
 
 photo.onload =
 function(){
@@ -1577,7 +1432,7 @@ function(){
 
 
 /* =================================================
-   ИНИЦИАЛИЗАЦИЯ
+   ИНИЦИАЛИЗАЦИЯ ФОТО
 ================================================= */
 
 function initHeartPhoto(){
@@ -1586,7 +1441,6 @@ function initHeartPhoto(){
 
         canvas.width =
             window.innerWidth;
-
 
         canvas.height =
             window.innerHeight;
@@ -1618,7 +1472,7 @@ function initHeartPhoto(){
 
         ctx.fillText(
 
-            "Не удалось загрузить foto.jpg",
+            "Не удалось загрузить фотографию",
 
             canvas.width / 2,
 
@@ -1665,20 +1519,8 @@ function initHeartPhoto(){
 
 
 /* =================================================
-   ОБЛАСТЬ ФОТОГРАФИИ
+   ОБЛАСТЬ ФОТО
 ================================================= */
-
-/*
-   ВАЖНО:
-
-   Теперь фотография НЕ занимает весь экран.
-
-   На компьютере:
-   примерно 75% ширины и 75% высоты.
-
-   На телефоне:
-   примерно 88% ширины и 68% высоты.
-*/
 
 function getPhotoRect(){
 
@@ -1704,15 +1546,12 @@ function getPhotoRect(){
             (canvas.width -
              photoWidth) / 2,
 
-
         y:
             (canvas.height -
              photoHeight) / 2,
 
-
         w:
             photoWidth,
-
 
         h:
             photoHeight
@@ -1733,16 +1572,10 @@ function buildHeartField(){
 
 
     const off =
-        document
-            .createElement(
-                "canvas"
-            );
+        document.createElement(
+            "canvas"
+        );
 
-
-    /*
-       Внутренний canvas
-       имеет именно размер фотографии.
-    */
 
     off.width =
         Math.floor(
@@ -1764,11 +1597,6 @@ function buildHeartField(){
             }
         );
 
-
-    /*
-       Фото вписывается
-       в небольшую область.
-    */
 
     const scale =
         Math.max(
@@ -1801,10 +1629,6 @@ function buildHeartField(){
         (rect.h -
          imageH) / 2;
 
-
-    /*
-       Чёрно-белое фото.
-    */
 
     offCtx.filter =
         "grayscale(1)";
@@ -1842,11 +1666,6 @@ function buildHeartField(){
     const centerY =
         rect.h / 2;
 
-
-    /*
-       Создаём сердечки
-       только внутри фотографии.
-    */
 
     for(
 
@@ -1894,10 +1713,6 @@ function buildHeartField(){
                 pixels[index] || 0;
 
 
-            /*
-               Расстояние от центра.
-            */
-
             const distance =
                 Math.sqrt(
 
@@ -1918,26 +1733,11 @@ function buildHeartField(){
 
             hearts.push({
 
-                /*
-                   Координаты уже
-                   относительно экрана.
-                */
-
                 targetX:
                     rect.x + x,
 
-
                 targetY:
                     rect.y + y,
-
-
-                /*
-                   Стартовая точка
-                   всего на 8 пикселей
-                   от конечной.
-
-                   Никакого разброса.
-                */
 
                 startX:
                     rect.x +
@@ -1952,7 +1752,6 @@ function buildHeartField(){
                     ) *
                     8,
 
-
                 startY:
                     rect.y +
                     y +
@@ -1966,26 +1765,20 @@ function buildHeartField(){
                     ) *
                     8,
 
-
                 x:
                     rect.x + x,
-
 
                 y:
                     rect.y + y,
 
-
                 gray:
                     gray,
-
 
                 revealed:
                     false,
 
-
                 progress:
                     0,
-
 
                 distance:
                     distance
@@ -1996,13 +1789,6 @@ function buildHeartField(){
 
     }
 
-
-    /*
-       Сортировка:
-
-       сначала центр,
-       затем постепенно края.
-    */
 
     hearts.sort(
         function(a,b){
@@ -2023,18 +1809,16 @@ function buildHeartField(){
 
 
 /* =================================================
-   РИСОВАНИЕ СЕРДЦА
+   РИСОВАНИЕ СЕРДЕЧКА
 ================================================= */
 
 function drawHeart(
-
     x,
     y,
     size,
     gray,
     alpha,
     scale
-
 ){
 
     ctx.save();
@@ -2050,11 +1834,8 @@ function drawHeart(
             0,
 
             Math.min(
-
                 255,
-
                 Math.round(gray)
-
             )
 
         );
@@ -2063,17 +1844,9 @@ function drawHeart(
     ctx.fillStyle =
 
         "rgb(" +
-
+        value + "," +
+        value + "," +
         value +
-
-        "," +
-
-        value +
-
-        "," +
-
-        value +
-
         ")";
 
 
@@ -2097,26 +1870,20 @@ function drawHeart(
 
 
     ctx.moveTo(
-
         0,
-
         s * 0.32
-
     );
 
 
     ctx.bezierCurveTo(
 
         -s * 0.95,
-
         -s * 0.35,
 
         -s * 1.05,
-
         s * 0.65,
 
         0,
-
         s
 
     );
@@ -2125,15 +1892,12 @@ function drawHeart(
     ctx.bezierCurveTo(
 
         s * 1.05,
-
         s * 0.65,
 
         s * 0.95,
-
         -s * 0.35,
 
         0,
-
         s * 0.32
 
     );
@@ -2151,14 +1915,10 @@ function drawHeart(
 
 
 /* =================================================
-   РИСОВАНИЕ
+   РИСОВАНИЕ ФОТО
 ================================================= */
 
 function drawHeartField(){
-
-    /*
-       Чёрный фон.
-    */
 
     ctx.fillStyle =
         "#050505";
@@ -2174,15 +1934,6 @@ function drawHeartField(){
 
     );
 
-
-    /*
-       Лёгкое затемнение вокруг
-       области фотографии.
-
-       Это помогает визуально
-       отделить фотографию
-       от фона.
-    */
 
     const rect =
         getPhotoRect();
@@ -2213,11 +1964,6 @@ function drawHeartField(){
     ctx.restore();
 
 
-    /*
-       Рисуем только уже
-       появившиеся сердечки.
-    */
-
     for(
         const h of hearts
     ){
@@ -2230,11 +1976,6 @@ function drawHeartField(){
 
         }
 
-
-        /*
-           Сердечко появляется
-           из маленькой точки.
-        */
 
         const scale =
             0.05 +
@@ -2267,7 +2008,7 @@ function drawHeartField(){
 
 
 /* =================================================
-   ОТКРЫВАЕМ НОВУЮ ЧАСТЬ
+   ОТКРЫТИЕ ФОТО
 ================================================= */
 
 function revealPhotoPart(){
@@ -2275,7 +2016,6 @@ function revealPhotoPart(){
     if(
 
         !imageReady ||
-
         assembling
 
     ){
@@ -2284,11 +2024,6 @@ function revealPhotoPart(){
 
     }
 
-
-    /*
-       Сколько сердечек
-       появится сейчас.
-    */
 
     const amount =
         Math.ceil(
@@ -2314,11 +2049,6 @@ function revealPhotoPart(){
         revealedCount;
 
 
-    /*
-       Новые сердечки
-       начинаются невидимыми.
-    */
-
     for(
 
         let i =
@@ -2334,14 +2064,11 @@ function revealPhotoPart(){
         hearts[i].revealed =
             true;
 
-
         hearts[i].progress =
             0;
 
-
         hearts[i].x =
             hearts[i].startX;
-
 
         hearts[i].y =
             hearts[i].startY;
@@ -2358,11 +2085,8 @@ function revealPhotoPart(){
 
 
     animateAssembly(
-
         firstIndex,
-
         nextCount
-
     );
 
 
@@ -2374,11 +2098,8 @@ function revealPhotoPart(){
     ){
 
         setTimeout(
-
             finishPhoto,
-
             1500
-
         );
 
     }
@@ -2387,22 +2108,13 @@ function revealPhotoPart(){
 
 
 /* =================================================
-   ПЛАВНАЯ СБОРКА
+   АНИМАЦИЯ
 ================================================= */
 
 function animateAssembly(
-
     firstIndex,
     lastIndex
-
 ){
-
-    /*
-       Делаем анимацию
-       достаточно медленной,
-       чтобы было видно,
-       как собирается рисунок.
-    */
 
     const duration =
         1600;
@@ -2426,12 +2138,9 @@ function animateAssembly(
 
         const t =
             Math.min(
-
                 1,
-
                 elapsed /
                 duration
-
             );
 
 
@@ -2451,12 +2160,6 @@ function animateAssembly(
                 hearts[i];
 
 
-            /*
-               Порядок внутри волны.
-
-               Центр появляется первым.
-            */
-
             const index =
                 i -
                 firstIndex;
@@ -2470,11 +2173,6 @@ function animateAssembly(
 
                     : 0;
 
-
-            /*
-               Волна идёт
-               постепенно.
-            */
 
             let localT =
 
@@ -2499,11 +2197,6 @@ function animateAssembly(
                 );
 
 
-            /*
-               Очень плавное
-               замедление.
-            */
-
             const eased =
 
                 localT < 0.5
@@ -2515,20 +2208,12 @@ function animateAssembly(
 
                     : 1 -
                       Math.pow(
-
                           -2 *
                           localT +
                           2,
-
                           3
-
                       ) / 2;
 
-
-            /*
-               Движение всего
-               на несколько пикселей.
-            */
 
             h.x =
 
@@ -2554,10 +2239,6 @@ function animateAssembly(
                 eased;
 
 
-            /*
-               Плавное проявление.
-            */
-
             h.progress =
                 eased;
 
@@ -2576,16 +2257,13 @@ function animateAssembly(
                     frame
                 );
 
-        }else{
+        }
+
+        else{
 
             assembling =
                 false;
 
-
-            /*
-               Фиксируем сердечки
-               точно на местах.
-            */
 
             for(
 
@@ -2602,10 +2280,8 @@ function animateAssembly(
                 hearts[i].x =
                     hearts[i].targetX;
 
-
                 hearts[i].y =
                     hearts[i].targetY;
-
 
                 hearts[i].progress =
                     1;
@@ -2653,30 +2329,19 @@ function finishPhoto(){
 
 
 /* =================================================
-   КЛИК ПО ФОТО
+   КЛИК
 ================================================= */
 
 canvas.addEventListener(
-
     "click",
-
     function(){
-
         revealPhotoPart();
-
     }
-
 );
 
 
-/* =================================================
-   ТЕЛЕФОН
-================================================= */
-
 canvas.addEventListener(
-
     "touchstart",
-
     function(event){
 
         event.preventDefault();
@@ -2684,22 +2349,18 @@ canvas.addEventListener(
         revealPhotoPart();
 
     },
-
     {
         passive:false
     }
-
 );
 
 
 /* =================================================
-   ИЗМЕНЕНИЕ РАЗМЕРА
+   RESIZE
 ================================================= */
 
 window.addEventListener(
-
     "resize",
-
     function(){
 
         if(
@@ -2720,22 +2381,18 @@ window.addEventListener(
         }
 
     }
-
 );
 
 
 /* =================================================
-   ФИНАЛЬНЫЙ ЭКРАН
+   ФИНАЛ
 ================================================= */
 
 function openReplyScreen(){
 
     showScreen(
-
         "photoScreen",
-
         "replyScreen"
-
     );
 
 }
@@ -2748,7 +2405,6 @@ function openReplyScreen(){
 function sendPersonalReply(){
 
     const reply =
-
         document
             .getElementById(
                 "replyText"
@@ -2758,7 +2414,6 @@ function sendPersonalReply(){
 
 
     const status =
-
         document
             .getElementById(
                 "sendStatus"
@@ -2796,22 +2451,21 @@ function sendPersonalReply(){
                 "Личный ответ после сюрприза:\n\n" +
                 reply,
 
-
             date:
 
                 now.toLocaleDateString(
                     "ru-RU"
                 ),
 
-
             time:
 
                 now.toLocaleTimeString(
                     "ru-RU"
-                )}
+                )
+
+        }
 
     )
-
 
     .then(
 
@@ -2831,7 +2485,6 @@ function sendPersonalReply(){
         }
 
     )
-
 
     .catch(
 
@@ -2857,10 +2510,8 @@ function sendPersonalReply(){
 ================================================= */
 
 function showScreen(
-
     oldScreen,
     newScreen
-
 ){
 
     document
@@ -2886,328 +2537,1028 @@ function showScreen(
 
 
 /* =================================================
-   ENTER
+   СЕКРЕТНЫЙ КОД 304056
 ================================================= */
 
-let secretCode = "";
+let secretCode =
+    "";
+
 
 document
-    .getElementById("birthdayInput")
-    .addEventListener("input", function(event){
+    .getElementById(
+        "birthdayInput"
+    )
+    .addEventListener(
+        "input",
+        function(event){
 
-        const value = event.target.value.trim();
+            const value =
+                event.target.value.trim();
 
-        // Секретная комбинация 304056
-        if(value === "304056"){
-            secretCode = "";
-            event.target.value = "";
-            openAdmin();
-            return;
-        }
 
-        // Не даём коду ломать обычную проверку даты
-        if(value.length > 6){
-            event.target.value = value.slice(0, 6);
-        }
-    });
+            if(
+                value ===
+                "304056"
+            ){
 
-document
-    .getElementById("birthdayInput")
-    .addEventListener("keydown", function(event){
+                secretCode =
+                    "";
 
-        if(event.key === "Enter"){
-            if(event.target.value.trim() === "304056"){
-                event.target.value = "";
+                event.target.value =
+                    "";
+
                 openAdmin();
+
                 return;
+
             }
 
-            checkBirthday();
-        }
-    });
 
+            if(
+                value.length > 6
+            ){
+
+                event.target.value =
+                    value.slice(
+                        0,
+                        6
+                    );
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "birthdayInput"
+    )
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key ===
+                "Enter"
+            ){
+
+                if(
+                    event.target.value.trim() ===
+                    "304056"
+                ){
+
+                    event.target.value =
+                        "";
+
+                    openAdmin();
+
+                    return;
+
+                }
+
+
+                checkBirthday();
+
+            }
+
+        }
+    );
 
 
 /* =================================================
    ПРИМЕНЕНИЕ НАСТРОЕК
-   ================================================= */
+================================================= */
 
 function applySiteConfig(){
-    const letter = document.getElementById("letterText");
+
+    /* Текст письма */
+
+    const letter =
+        document.getElementById(
+            "letterText"
+        );
+
+
     if(letter){
-        letter.textContent = SITE_CONFIG.letter;
+
+        letter.textContent =
+            SITE_CONFIG.letter;
+
     }
 
-    const title = document.querySelector(".photo-title");
-    if(title){
-        title.textContent = "Ещё один сюрприз ❤️";
+
+    /* Текст после правильной даты */
+
+    const successText =
+        document.getElementById(
+            "successText"
+        );
+
+
+    if(successText){
+
+        successText.textContent =
+            SITE_CONFIG.successText ||
+            DEFAULT_CONFIG.successText;
+
     }
 
-    document.title = `Для ${SITE_CONFIG.name} ❤️`;
 
-    const replyInput = document.getElementById("replyText");
+    /* Вопрос Да / Нет */
+
+    const choiceText =
+        document.getElementById(
+            "choiceText"
+        );
+
+
+    if(choiceText){
+
+        choiceText.innerHTML =
+            SITE_CONFIG.choiceText ||
+            DEFAULT_CONFIG.choiceText;
+
+    }
+
+
+    /* Заголовок */
+
+    document.title =
+        `Для ${SITE_CONFIG.name} ❤️`;
+
+
+    /* Поле ответа */
+
+    const replyInput =
+        document.getElementById(
+            "replyText"
+        );
+
+
     if(replyInput){
+
         replyInput.placeholder =
             `Напиши здесь свой ответ, ${SITE_CONFIG.name}...`;
+
     }
+
 }
 
 
 /* =================================================
-   ВЫБОР ФОТО ИЗ ГАЛЕРЕИ / ФАЙЛОВ
-   ================================================= */
+   ФОТО В ПАНЕЛИ
+================================================= */
 
-let selectedAdminPhotoData = null;
+let selectedAdminPhotoData =
+    null;
+
 
 function previewAdminPhoto(event){
-    const file = event.target.files && event.target.files[0];
+
+    const file =
+        event.target.files &&
+        event.target.files[0];
+
 
     if(!file){
-        selectedAdminPhotoData = null;
-        document.getElementById("adminPhotoPreviewWrap")
-            .classList.add("hidden");
-        return;
-    }
 
-    if(!file.type.startsWith("image/")){
-        event.target.value = "";
-        selectedAdminPhotoData = null;
-        document.getElementById("adminStatus").textContent =
-            "Можно выбрать только изображение.";
-        return;
-    }
+        selectedAdminPhotoData =
+            null;
 
-    const reader = new FileReader();
 
-    reader.onload = function(e){
-        const source = new Image();
-
-        source.onload = function(){
-            const maxSide = 900;
-            const ratio = Math.min(
-                1,
-                maxSide / Math.max(source.naturalWidth, source.naturalHeight)
+        document
+            .getElementById(
+                "adminPhotoPreviewWrap"
+            )
+            .classList
+            .add(
+                "hidden"
             );
 
-            const canvas = document.createElement("canvas");
-            canvas.width = Math.max(1, Math.round(source.naturalWidth * ratio));
-            canvas.height = Math.max(1, Math.round(source.naturalHeight * ratio));
 
-            const context = canvas.getContext("2d");
+        return;
+
+    }
+
+
+    if(
+        !file.type.startsWith(
+            "image/"
+        )
+    ){
+
+        event.target.value =
+            "";
+
+
+        selectedAdminPhotoData =
+            null;
+
+
+        document
+            .getElementById(
+                "adminStatus"
+            )
+            .textContent =
+            "Можно выбрать только изображение.";
+
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+    function(e){
+
+        const source =
+            new Image();
+
+
+        source.onload =
+        function(){
+
+            const maxSide =
+                900;
+
+
+            const ratio =
+                Math.min(
+
+                    1,
+
+                    maxSide /
+                    Math.max(
+                        source.naturalWidth,
+                        source.naturalHeight
+                    )
+
+                );
+
+
+            const canvas =
+                document.createElement(
+                    "canvas"
+                );
+
+
+            canvas.width =
+                Math.max(
+                    1,
+                    Math.round(
+                        source.naturalWidth *
+                        ratio
+                    )
+                );
+
+
+            canvas.height =
+                Math.max(
+                    1,
+                    Math.round(
+                        source.naturalHeight *
+                        ratio
+                    )
+                );
+
+
+            const context =
+                canvas.getContext(
+                    "2d"
+                );
+
+
             context.drawImage(
+
                 source,
+
                 0,
                 0,
+
                 canvas.width,
                 canvas.height
+
             );
 
+
             selectedAdminPhotoData =
-                canvas.toDataURL("image/jpeg", 0.72);
+                canvas.toDataURL(
+                    "image/jpeg",
+                    0.72
+                );
+
 
             const preview =
-                document.getElementById("adminPhotoPreview");
+                document.getElementById(
+                    "adminPhotoPreview"
+                );
 
-            preview.src = selectedAdminPhotoData;
 
-            document.getElementById("adminPhotoPreviewWrap")
-                .classList.remove("hidden");
+            preview.src =
+                selectedAdminPhotoData;
 
-            document.getElementById("adminStatus").textContent =
+
+            document
+                .getElementById(
+                    "adminPhotoPreviewWrap"
+                )
+                .classList
+                .remove(
+                    "hidden"
+                );
+
+
+            document
+                .getElementById(
+                    "adminStatus"
+                )
+                .textContent =
                 "Фото выбрано ❤️";
+
         };
 
-        source.onerror = function(){
-            document.getElementById("adminStatus").textContent =
+
+        source.onerror =
+        function(){
+
+            document
+                .getElementById(
+                    "adminStatus"
+                )
+                .textContent =
                 "Не удалось обработать фотографию.";
+
         };
 
-        source.src = e.target.result;
+
+        source.src =
+            e.target.result;
+
     };
 
-    reader.readAsDataURL(file);
-}
 
-function loadExistingAdminPhoto(){
-    const preview = document.getElementById("adminPhotoPreview");
-    const wrap = document.getElementById("adminPhotoPreviewWrap");
-
-    if(SITE_CONFIG.photo){
-        preview.src = SITE_CONFIG.photo;
-        wrap.classList.remove("hidden");
-    }
-}
-
-function openAdmin(){
-    document.getElementById("adminName").value =
-        SITE_CONFIG.name || "";
-
-    document.getElementById("adminBirthday").value =
-        SITE_CONFIG.birthday || "";
-
-    document.getElementById("adminLetter").value =
-        SITE_CONFIG.letter || "";
-
-    selectedAdminPhotoData = null;
-    document.getElementById("adminPhotoFile").value = "";
-    loadExistingAdminPhoto();
-document.getElementById("adminStatus").textContent = "";
-    document.getElementById("configLink").classList.add("hidden");
-
-    document.getElementById("questionScreen")
-        .classList.add("hidden");
-
-    document.getElementById("adminScreen")
-        .classList.remove("hidden");
-}
-
-function closeAdmin(){
-    document.getElementById("adminScreen")
-        .classList.add("hidden");
-
-    document.getElementById("questionScreen")
-        .classList.remove("hidden");
-
-    document.getElementById("birthdayInput").value = "";
-}
-
-function encodeConfig(config){
-    const id =
-        Date.now().toString(36) +
-        "-" +
-        Math.random().toString(36).slice(2, 10);
-
-    localStorage.setItem(
-        "site_config_" + id,
-        JSON.stringify(config)
+    reader.readAsDataURL(
+        file
     );
 
-    return id;
 }
+
+
+/* =================================================
+   ПОКАЗ СУЩЕСТВУЮЩЕГО ФОТО
+================================================= */
+
+function loadExistingAdminPhoto(){
+
+    const preview =
+        document.getElementById(
+            "adminPhotoPreview"
+        );
+
+
+    const wrap =
+        document.getElementById(
+            "adminPhotoPreviewWrap"
+        );
+
+
+    if(
+        SITE_CONFIG.photo
+    ){
+
+        preview.src =
+            SITE_CONFIG.photo;
+
+
+        wrap.classList.remove(
+            "hidden"
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   ОТКРЫТИЕ ПАНЕЛИ
+================================================= */
+
+function openAdmin(){
+
+    document
+        .getElementById(
+            "adminName"
+        )
+        .value =
+        SITE_CONFIG.name || "";
+
+
+    document
+        .getElementById(
+            "adminBirthday"
+        )
+        .value =
+        SITE_CONFIG.birthday || "";
+
+
+    document
+        .getElementById(
+            "adminSuccessText"
+        )
+        .value =
+        SITE_CONFIG.successText ||
+        DEFAULT_CONFIG.successText;
+
+
+    document
+        .getElementById(
+            "adminChoiceText"
+        )
+        .value =
+        SITE_CONFIG.choiceText ||
+        DEFAULT_CONFIG.choiceText;
+
+
+    document
+        .getElementById(
+            "adminLetter"
+        )
+        .value =
+        SITE_CONFIG.letter || "";
+
+
+    selectedAdminPhotoData =
+        null;
+
+
+    document
+        .getElementById(
+            "adminPhotoFile"
+        )
+        .value =
+        "";
+
+
+    loadExistingAdminPhoto();
+
+
+    document
+        .getElementById(
+            "adminStatus"
+        )
+        .textContent =
+        "";
+
+
+    document
+        .getElementById(
+            "configLink"
+        )
+        .classList
+        .add(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "questionScreen"
+        )
+        .classList
+        .add(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "adminScreen"
+        )
+        .classList
+        .remove(
+            "hidden"
+        );
+
+}
+
+
+/* =================================================
+   ЗАКРЫТИЕ ПАНЕЛИ
+================================================= */
+
+function closeAdmin(){
+
+    document
+        .getElementById(
+            "adminScreen"
+        )
+        .classList
+        .add(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "questionScreen"
+        )
+        .classList
+        .remove(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "birthdayInput"
+        )
+        .value =
+        "";
+
+}
+
+
+/* =================================================
+   СОЗДАНИЕ ID КОНФИГУРАЦИИ
+================================================= */
+
+function encodeConfig(config){
+
+    const id =
+
+        Date.now().toString(36) +
+        "-" +
+        Math.random()
+            .toString(36)
+            .slice(2,10);
+
+
+    localStorage.setItem(
+
+        "site_config_" +
+        id,
+
+        JSON.stringify(
+            config
+        )
+
+    );
+
+
+    return id;
+
+}
+
+
+/* =================================================
+   СОХРАНЕНИЕ НАСТРОЕК
+================================================= */
+
 function saveAdminSettings(){
+
     const config = {
+
         name:
-            document.getElementById("adminName").value.trim(),
+            document
+                .getElementById(
+                    "adminName"
+                )
+                .value
+                .trim(),
+
 
         birthday:
-            document.getElementById("adminBirthday").value.trim(),
+            document
+                .getElementById(
+                    "adminBirthday"
+                )
+                .value
+                .trim(),
+
+
+        successText:
+            document
+                .getElementById(
+                    "adminSuccessText"
+                )
+                .value
+                .trim(),
+
+
+        choiceText:
+            document
+                .getElementById(
+                    "adminChoiceText"
+                )
+                .value,
+
 
         letter:
-            document.getElementById("adminLetter").value,
+            document
+                .getElementById(
+                    "adminLetter"
+                )
+                .value,
+
 
         photo:
             selectedAdminPhotoData ||
             SITE_CONFIG.photo ||
-            ""};
+            ""
 
-    if(!config.name){
-        document.getElementById("adminStatus").textContent =
+    };
+
+
+    /* Имя */
+
+    if(
+        !config.name
+    ){
+
+        document
+            .getElementById(
+                "adminStatus"
+            )
+            .textContent =
             "Укажи имя.";
+
         return;
+
     }
 
-    if(!/^\d{2}\.\d{2}$/.test(config.birthday)){
-        document.getElementById("adminStatus").textContent =
+
+    /* Дата */
+
+    if(
+        !/^\d{2}\.\d{2}$/
+            .test(
+                config.birthday
+            )
+    ){
+
+        document
+            .getElementById(
+                "adminStatus"
+            )
+            .textContent =
             "Дата должна быть в формате ДД.ММ, например 01.10.";
+
         return;
+
     }
 
-    if(!config.letter.trim()){
-        document.getElementById("adminStatus").textContent =
+
+    /* Текст после даты */
+
+    if(
+        !config.successText
+    ){
+
+        document
+            .getElementById(
+                "adminStatus"
+            )
+            .textContent =
+            "Текст после правильного ответа не может быть пустым.";
+
+        return;
+
+    }
+
+
+    /* Вопрос */
+
+    if(
+        !config.choiceText.trim()
+    ){
+
+        document
+            .getElementById(
+                "adminStatus"
+            )
+            .textContent =
+            "Вопрос перед кнопками не может быть пустым.";
+
+        return;
+
+    }
+
+
+    /* Письмо */
+
+    if(
+        !config.letter.trim()
+    ){
+
+        document
+            .getElementById(
+                "adminStatus"
+            )
+            .textContent =
             "Текст письма не может быть пустым.";
+
         return;
+
     }
 
-    if(!config.photo){
-        document.getElementById("adminStatus").textContent =
+
+    /* Фото */
+
+    if(
+        !config.photo
+    ){
+
+        document
+            .getElementById(
+                "adminStatus"
+            )
+            .textContent =
             "Выбери фотографию.";
+
         return;
+
     }
-const configId = encodeConfig(config);
+
+
+    /* Создаём ID */
+
+    const configId =
+        encodeConfig(
+            config
+        );
+
+
+    /* Создаём ссылку */
 
     const url =
-        window.location.href.split("?")[0] +
+        window.location.href
+            .split("?")[0] +
         "?cfg=" +
         configId;
 
-    const link = document.getElementById("configLink");
 
-    link.href = url;
-    link.textContent = url;
-    link.classList.remove("hidden");
+    const link =
+        document.getElementById(
+            "configLink"
+        );
 
-    document.getElementById("adminStatus").textContent =
+
+    link.href =
+        url;
+
+
+    link.textContent =
+        url;
+
+
+    link.classList.remove(
+        "hidden"
+    );
+
+
+    document
+        .getElementById(
+            "adminStatus"
+        )
+        .textContent =
         "Готово! Ссылка создана ❤️";
+
 }
 
+
+/* =================================================
+   ЗАПУСК
+================================================= */
+
 applySiteConfig();
+
 </script>
 
 
 <!-- =================================================
      СЕКРЕТНАЯ ПАНЕЛЬ НАСТРОЕК
-     Открывается комбинацией 304056 в поле даты
-     ================================================= -->
-<section id="adminScreen" class="screen hidden">
+================================================= -->
+
+<section
+    id="adminScreen"
+    class="screen hidden"
+>
+
     <div class="admin-box">
-        <h2>⚙️ Настройки сайта</h2>
+
+        <h2>
+            ⚙️ Настройки сайта
+        </h2>
+
         <p class="admin-note">
-            Измени данные и получи ссылку с сохранёнными настройками.
+            Измени данные и получи ссылку
+            с сохранёнными настройками.
         </p>
 
-        <div class="admin-field">
-            <label for="adminName">Имя</label>
-            <input id="adminName" type="text" placeholder="Например: Лера">
-        </div>
+
+        <!-- ИМЯ -->
 
         <div class="admin-field">
-            <label for="adminBirthday">Правильная дата</label>
-            <input id="adminBirthday" type="text" placeholder="Например: 01.10">
+
+            <label for="adminName">
+                Имя
+            </label>
+
+            <input
+                id="adminName"
+                type="text"
+                placeholder="Например: Лера"
+            >
+
         </div>
 
-        <div class="admin-field">
-            <label for="adminLetter">Текст письма</label>
-            <textarea id="adminLetter" placeholder="Текст письма"></textarea>
-        </div>
+
+        <!-- ДАТА -->
 
         <div class="admin-field">
-            <label for="adminPhotoFile">Картинка для сбора из сердечек</label>
+
+            <label for="adminBirthday">
+                Правильная дата
+            </label>
+
+            <input
+                id="adminBirthday"
+                type="text"
+                placeholder="Например: 01.10"
+            >
+
+        </div>
+
+
+        <!-- ТЕКСТ ПОСЛЕ ДАТЫ -->
+
+        <div class="admin-field">
+
+            <label for="adminSuccessText">
+                Текст после правильного ответа
+            </label>
+
+            <input
+                id="adminSuccessText"
+                type="text"
+                placeholder="Например: Отлично! Ты ввела правильно ❤️"
+            >
+
+            <small class="admin-help">
+                Здесь можно изменить «ввела» на «ввел»
+                или полностью изменить этот текст.
+            </small>
+
+        </div>
+
+
+        <!-- ВОПРОС ДА / НЕТ -->
+
+        <div class="admin-field">
+
+            <label for="adminChoiceText">
+                Вопрос перед кнопками Да / Нет
+            </label>
+
+            <textarea
+                id="adminChoiceText"
+                placeholder="Ты хочешь, чтобы я к тебе приехал на выходные после твоего дня рождения? ❤️"
+            ></textarea>
+
+            <small class="admin-help">
+                Этот текст появится после письма,
+                перед кнопками «Да» и «Нет».
+                Для переноса строки можно использовать
+                &lt;br&gt;.
+            </small>
+
+        </div>
+
+
+        <!-- ПИСЬМО -->
+
+        <div class="admin-field">
+
+            <label for="adminLetter">
+                Текст письма
+            </label>
+
+            <textarea
+                id="adminLetter"
+                placeholder="Текст письма"
+            ></textarea>
+
+        </div>
+
+
+        <!-- ФОТО -->
+
+        <div class="admin-field">
+
+            <label for="adminPhotoFile">
+                Картинка для сбора из сердечек
+            </label>
+
             <input
                 id="adminPhotoFile"
                 type="file"
                 accept="image/*"
                 onchange="previewAdminPhoto(event)"
             >
-            <small style="color:#bdb0e8">
-                Выбери фотографию прямо с телефона или компьютера.
-                Она будет использоваться для сборки из сердечек.
+
+            <small class="admin-help">
+
+                Выбери фотографию прямо
+                с телефона или компьютера.
+
+                Она будет использоваться
+                для сборки из сердечек.
+
             </small>
 
-            <div id="adminPhotoPreviewWrap" class="hidden" style="margin-top:12px;text-align:center;">
+
+            <div
+                id="adminPhotoPreviewWrap"
+                class="hidden"
+                style="
+                    margin-top:12px;
+                    text-align:center;
+                "
+            >
+
                 <img
                     id="adminPhotoPreview"
                     alt="Предпросмотр"
-                    style="max-width:100%;max-height:220px;border-radius:14px;object-fit:contain;"
+                    style="
+                        max-width:100%;
+                        max-height:220px;
+                        border-radius:14px;
+                        object-fit:contain;
+                    "
                 >
+
             </div>
-        </div>
-<div class="admin-actions">
-            <button type="button" onclick="saveAdminSettings()">
-                Сохранить и получить ссылку 🔗
-            </button>
-            <button type="button" onclick="closeAdmin()">
-                Закрыть
-            </button>
+
         </div>
 
+
+        <!-- КНОПКИ -->
+
+        <div class="admin-actions">
+
+            <button
+                type="button"
+                onclick="saveAdminSettings()"
+            >
+                Сохранить и получить ссылку 🔗
+            </button>
+
+
+            <button
+                type="button"
+                onclick="closeAdmin()"
+            >
+                Закрыть
+            </button>
+
+        </div>
+
+
         <div id="adminStatus"></div>
-        <small style="display:block;margin-top:12px;color:#ffd7a8;line-height:1.45">
-⚠️ В этой версии настройки и выбранное фото сохраняются в браузере.
-Полученная ссылка будет работать на этом же устройстве и в этом же браузере.
-</small>
-        <a id="configLink" class="config-link hidden" href="#" target="_blank"></a>
+
+
+        <small
+            style="
+                display:block;
+                margin-top:12px;
+                color:#ffd7a8;
+                line-height:1.45;
+            "
+        >
+            ⚠️ В этой версии настройки и выбранное
+            фото сохраняются в браузере.
+
+            Полученная ссылка будет работать
+            на этом же устройстве и в этом же браузере.
+        </small>
+
+
+        <a
+            id="configLink"
+            class="config-link hidden"
+            href="#"
+            target="_blank"
+        ></a>
+
     </div>
+
 </section>
 
 </body>
 </html>
+```
