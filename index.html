@@ -894,6 +894,16 @@ textarea::placeholder{
     .admin-box{padding:22px 17px;}
 }
 
+
+#adminPhotoFile{
+    padding:10px;
+    cursor:pointer;
+}
+#adminPhotoPreview{
+    display:block;
+    margin:0 auto;
+}
+
 </style>
 
 </head>
@@ -1131,138 +1141,7 @@ textarea::placeholder{
 
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-/* =================================================
-   ПРИМЕНЕНИЕ НАСТРОЕК
-   ================================================= */
 
-function applySiteConfig(){
-    const letter = document.getElementById("letterText");
-    if(letter){
-        letter.textContent = SITE_CONFIG.letter;
-    }
-
-    const title = document.querySelector(".photo-title");
-    if(title){
-        title.textContent = "Ещё один сюрприз ❤️";
-    }
-
-    document.title = `Для ${SITE_CONFIG.name} ❤️`;
-
-    const replyInput = document.getElementById("replyText");
-    if(replyInput){
-        replyInput.placeholder =
-            `Напиши здесь свой ответ, ${SITE_CONFIG.name}...`;
-    }
-}
-
-function openAdmin(){
-    document.getElementById("adminName").value =
-        SITE_CONFIG.name || "";
-
-    document.getElementById("adminBirthday").value =
-        SITE_CONFIG.birthday || "";
-
-    document.getElementById("adminLetter").value =
-        SITE_CONFIG.letter || "";
-
-    document.getElementById("adminPhoto").value =
-        SITE_CONFIG.photo || "";
-document.getElementById("adminStatus").textContent = "";
-    document.getElementById("configLink").classList.add("hidden");
-
-    document.getElementById("questionScreen")
-        .classList.add("hidden");
-
-    document.getElementById("adminScreen")
-        .classList.remove("hidden");
-}
-
-function closeAdmin(){
-    document.getElementById("adminScreen")
-        .classList.add("hidden");
-
-    document.getElementById("questionScreen")
-        .classList.remove("hidden");
-
-    document.getElementById("birthdayInput").value = "";
-}
-
-function encodeConfig(config){
-    const json = JSON.stringify(config);
-
-    return btoa(
-        encodeURIComponent(json)
-    )
-    .replace(/\+/g,"-")
-    .replace(/\//g,"_")
-    .replace(/=+$/,"");
-}
-
-function saveAdminSettings(){
-    const config = {
-        name:
-            document.getElementById("adminName").value.trim(),
-
-        birthday:
-            document.getElementById("adminBirthday").value.trim(),
-
-        letter:
-            document.getElementById("adminLetter").value,
-
-        photo:
-            document.getElementById("adminPhoto").value.trim()};
-
-    if(!config.name){
-        document.getElementById("adminStatus").textContent =
-            "Укажи имя.";
-        return;
-    }
-
-    if(!/^\d{2}\.\d{2}$/.test(config.birthday)){
-        document.getElementById("adminStatus").textContent =
-            "Дата должна быть в формате ДД.ММ, например 01.10.";
-        return;
-    }
-
-    if(!config.letter.trim()){
-        document.getElementById("adminStatus").textContent =
-            "Текст письма не может быть пустым.";
-        return;
-    }
-
-    if(!config.photo){
-        document.getElementById("adminStatus").textContent =
-            "Укажи картинку.";
-        return;
-    }
-
-    if(
-        config.email &&
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.email)
-    ){
-        document.getElementById("adminStatus").textContent =
-            "Проверь адрес электронной почты.";
-        return;
-    }
-
-    const encoded = encodeConfig(config);
-
-    const url =
-        window.location.href.split("?")[0] +
-        "?cfg=" +
-        encoded;
-
-    const link = document.getElementById("configLink");
-
-    link.href = url;
-    link.textContent = url;
-    link.classList.remove("hidden");
-
-    document.getElementById("adminStatus").textContent =
-        "Готово! Ссылка создана ❤️";
-}
-
-applySiteConfig();
 
 </script>
 
@@ -1302,7 +1181,7 @@ const DEFAULT_CONFIG = {
 
 /*
    Настройки можно передавать через ссылку:
-   ?cfg=<base64url-код конфигурации>
+   ?cfg=<base64url-код конфигурации; фото может быть встроено в ссылку>
 */
 function getSiteConfig(){
     const params = new URLSearchParams(window.location.search);
@@ -3051,6 +2930,186 @@ document
         }
     });
 
+
+
+/* =================================================
+   ПРИМЕНЕНИЕ НАСТРОЕК
+   ================================================= */
+
+function applySiteConfig(){
+    const letter = document.getElementById("letterText");
+    if(letter){
+        letter.textContent = SITE_CONFIG.letter;
+    }
+
+    const title = document.querySelector(".photo-title");
+    if(title){
+        title.textContent = "Ещё один сюрприз ❤️";
+    }
+
+    document.title = `Для ${SITE_CONFIG.name} ❤️`;
+
+    const replyInput = document.getElementById("replyText");
+    if(replyInput){
+        replyInput.placeholder =
+            `Напиши здесь свой ответ, ${SITE_CONFIG.name}...`;
+    }
+}
+
+
+/* =================================================
+   ВЫБОР ФОТО ИЗ ГАЛЕРЕИ / ФАЙЛОВ
+   ================================================= */
+
+let selectedAdminPhotoData = null;
+
+function previewAdminPhoto(event){
+    const file = event.target.files && event.target.files[0];
+
+    if(!file){
+        selectedAdminPhotoData = null;
+        document.getElementById("adminPhotoPreviewWrap")
+            .classList.add("hidden");
+        return;
+    }
+
+    if(!file.type.startsWith("image/")){
+        event.target.value = "";
+        selectedAdminPhotoData = null;
+        document.getElementById("adminStatus").textContent =
+            "Можно выбрать только изображение.";
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+        selectedAdminPhotoData = e.target.result;
+
+        const preview = document.getElementById("adminPhotoPreview");
+        preview.src = selectedAdminPhotoData;
+
+        document.getElementById("adminPhotoPreviewWrap")
+            .classList.remove("hidden");
+
+        document.getElementById("adminStatus").textContent =
+            "Фото выбрано ❤️";
+    };
+
+    reader.readAsDataURL(file);
+}
+
+function loadExistingAdminPhoto(){
+    const preview = document.getElementById("adminPhotoPreview");
+    const wrap = document.getElementById("adminPhotoPreviewWrap");
+
+    if(SITE_CONFIG.photo){
+        preview.src = SITE_CONFIG.photo;
+        wrap.classList.remove("hidden");
+    }
+}
+
+function openAdmin(){
+    document.getElementById("adminName").value =
+        SITE_CONFIG.name || "";
+
+    document.getElementById("adminBirthday").value =
+        SITE_CONFIG.birthday || "";
+
+    document.getElementById("adminLetter").value =
+        SITE_CONFIG.letter || "";
+
+    selectedAdminPhotoData = null;
+    document.getElementById("adminPhotoFile").value = "";
+    loadExistingAdminPhoto();
+document.getElementById("adminStatus").textContent = "";
+    document.getElementById("configLink").classList.add("hidden");
+
+    document.getElementById("questionScreen")
+        .classList.add("hidden");
+
+    document.getElementById("adminScreen")
+        .classList.remove("hidden");
+}
+
+function closeAdmin(){
+    document.getElementById("adminScreen")
+        .classList.add("hidden");
+
+    document.getElementById("questionScreen")
+        .classList.remove("hidden");
+
+    document.getElementById("birthdayInput").value = "";
+}
+
+function encodeConfig(config){
+    const json = JSON.stringify(config);
+
+    return btoa(
+        encodeURIComponent(json)
+    )
+    .replace(/\+/g,"-")
+    .replace(/\//g,"_")
+    .replace(/=+$/,"");
+}
+
+function saveAdminSettings(){
+    const config = {
+        name:
+            document.getElementById("adminName").value.trim(),
+
+        birthday:
+            document.getElementById("adminBirthday").value.trim(),
+
+        letter:
+            document.getElementById("adminLetter").value,
+
+        photo:
+            selectedAdminPhotoData ||
+            SITE_CONFIG.photo ||
+            ""};
+
+    if(!config.name){
+        document.getElementById("adminStatus").textContent =
+            "Укажи имя.";
+        return;
+    }
+
+    if(!/^\d{2}\.\d{2}$/.test(config.birthday)){
+        document.getElementById("adminStatus").textContent =
+            "Дата должна быть в формате ДД.ММ, например 01.10.";
+        return;
+    }
+
+    if(!config.letter.trim()){
+        document.getElementById("adminStatus").textContent =
+            "Текст письма не может быть пустым.";
+        return;
+    }
+
+    if(!config.photo){
+        document.getElementById("adminStatus").textContent =
+            "Выбери фотографию.";
+        return;
+    }
+const encoded = encodeConfig(config);
+
+    const url =
+        window.location.href.split("?")[0] +
+        "?cfg=" +
+        encoded;
+
+    const link = document.getElementById("configLink");
+
+    link.href = url;
+    link.textContent = url;
+    link.classList.remove("hidden");
+
+    document.getElementById("adminStatus").textContent =
+        "Готово! Ссылка создана ❤️";
+}
+
+applySiteConfig();
 </script>
 
 
@@ -3081,12 +3140,25 @@ document
         </div>
 
         <div class="admin-field">
-            <label for="adminPhoto">Картинка для сбора из сердечек</label>
-            <input id="adminPhoto" type="text" placeholder="Например: foto.jpg">
+            <label for="adminPhotoFile">Картинка для сбора из сердечек</label>
+            <input
+                id="adminPhotoFile"
+                type="file"
+                accept="image/*"
+                onchange="previewAdminPhoto(event)"
+            >
             <small style="color:#bdb0e8">
-                Укажи имя файла картинки, который лежит рядом с HTML-файлом,
-                либо URL изображения.
+                Выбери фотографию прямо с телефона или компьютера.
+                Она будет использоваться для сборки из сердечек.
             </small>
+
+            <div id="adminPhotoPreviewWrap" class="hidden" style="margin-top:12px;text-align:center;">
+                <img
+                    id="adminPhotoPreview"
+                    alt="Предпросмотр"
+                    style="max-width:100%;max-height:220px;border-radius:14px;object-fit:contain;"
+                >
+            </div>
         </div>
 <div class="admin-actions">
             <button type="button" onclick="saveAdminSettings()">
