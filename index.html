@@ -1181,7 +1181,7 @@ const DEFAULT_CONFIG = {
 
 /*
    Настройки можно передавать через ссылку:
-   ?cfg=<base64url-код конфигурации; фото может быть встроено в ссылку>
+   ?cfg=<base64url-код конфигурации; фото автоматически уменьшается и встраивается в ссылку>
 */
 function getSiteConfig(){
     const params = new URLSearchParams(window.location.search);
@@ -1192,13 +1192,21 @@ function getSiteConfig(){
     }
 
     try{
-        const json = decodeURIComponent(
-            atob(
-                encoded
-                .replace(/-/g,"+")
-                .replace(/_/g,"/")
-            )
+        let base64 = encoded
+            .replace(/-/g,"+")
+            .replace(/_/g,"/");
+
+        while(base64.length % 4){
+            base64 += "=";
+        }
+
+        const binary = atob(base64);
+        const bytes = Uint8Array.from(
+            binary,
+            char => char.charCodeAt(0)
         );
+
+        const json = new TextDecoder().decode(bytes);
 
         const parsed = JSON.parse(json);
 
@@ -2984,16 +2992,49 @@ function previewAdminPhoto(event){
     const reader = new FileReader();
 
     reader.onload = function(e){
-        selectedAdminPhotoData = e.target.result;
+        const source = new Image();
 
-        const preview = document.getElementById("adminPhotoPreview");
-        preview.src = selectedAdminPhotoData;
+        source.onload = function(){
+            const maxSide = 900;
+            const ratio = Math.min(
+                1,
+                maxSide / Math.max(source.naturalWidth, source.naturalHeight)
+            );
 
-        document.getElementById("adminPhotoPreviewWrap")
-            .classList.remove("hidden");
+            const canvas = document.createElement("canvas");
+            canvas.width = Math.max(1, Math.round(source.naturalWidth * ratio));
+            canvas.height = Math.max(1, Math.round(source.naturalHeight * ratio));
 
-        document.getElementById("adminStatus").textContent =
-            "Фото выбрано ❤️";
+            const context = canvas.getContext("2d");
+            context.drawImage(
+                source,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+            selectedAdminPhotoData =
+                canvas.toDataURL("image/jpeg", 0.72);
+
+            const preview =
+                document.getElementById("adminPhotoPreview");
+
+            preview.src = selectedAdminPhotoData;
+
+            document.getElementById("adminPhotoPreviewWrap")
+                .classList.remove("hidden");
+
+            document.getElementById("adminStatus").textContent =
+                "Фото выбрано ❤️";
+        };
+
+        source.onerror = function(){
+            document.getElementById("adminStatus").textContent =
+                "Не удалось обработать фотографию.";
+        };
+
+        source.src = e.target.result;
     };
 
     reader.readAsDataURL(file);
@@ -3044,13 +3085,21 @@ function closeAdmin(){
 
 function encodeConfig(config){
     const json = JSON.stringify(config);
+    const bytes = new TextEncoder().encode(json);
 
-    return btoa(
-        encodeURIComponent(json)
-    )
-    .replace(/\+/g,"-")
-    .replace(/\//g,"_")
-    .replace(/=+$/,"");
+    let binary = "";
+    const chunkSize = 0x8000;
+
+    for(let i = 0; i < bytes.length; i += chunkSize){
+        binary += String.fromCharCode(
+            ...bytes.subarray(i, i + chunkSize)
+        );
+    }
+
+    return btoa(binary)
+        .replace(/\+/g,"-")
+        .replace(/\//g,"_")
+        .replace(/=+$/,"");
 }
 
 function saveAdminSettings(){
@@ -3098,6 +3147,12 @@ const encoded = encodeConfig(config);
         window.location.href.split("?")[0] +
         "?cfg=" +
         encoded;
+
+    if(url.length > 1500000){
+        document.getElementById("adminStatus").textContent =
+            "Фото слишком большое. Выбери другое фото.";
+        return;
+    }
 
     const link = document.getElementById("configLink");
 
@@ -3176,4 +3231,3 @@ applySiteConfig();
 
 </body>
 </html>
-```
