@@ -820,6 +820,80 @@ textarea::placeholder{
 }
 
 
+
+/* =================================================
+   СЕКРЕТНАЯ ПАНЕЛЬ НАСТРОЕК
+   ================================================= */
+#adminScreen{
+    background:
+        radial-gradient(circle at center,#3c1b8f 0%,#100022 80%);
+    overflow-y:auto;
+    align-items:flex-start;
+    padding:25px 15px;
+}
+.admin-box{
+    width:min(94%,760px);
+    max-height:92vh;
+    overflow-y:auto;
+    padding:30px;
+    border-radius:22px;
+    background:rgba(20,10,50,.96);
+    border:1px solid rgba(180,130,255,.35);
+    box-shadow:0 0 45px rgba(90,30,255,.45);
+}
+.admin-box h2{
+    text-align:center;
+    margin-bottom:10px;
+}
+.admin-note{
+    text-align:center;
+    color:#cfc2ff;
+    margin-bottom:25px;
+}
+.admin-field{
+    margin-bottom:18px;
+}
+.admin-field label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+.admin-field input,
+.admin-field textarea{
+    width:100%;
+}
+.admin-field textarea{
+    min-height:130px;
+}
+.admin-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+.admin-actions button{
+    margin-top:5px;
+}
+#adminStatus{
+    min-height:25px;
+    text-align:center;
+    margin-top:15px;
+    color:#baffd5;
+}
+.config-link{
+    display:block;
+    margin-top:15px;
+    padding:12px;
+    border-radius:12px;
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    word-break:break-all;
+    text-decoration:none;
+}
+@media(max-width:600px){
+    .admin-box{padding:22px 17px;}
+}
+
 </style>
 
 </head>
@@ -899,18 +973,7 @@ textarea::placeholder{
             Для тебя 💌
         </h2>
 
-        <div class="letter-text">
-
-Дорогая любимая Лера
-
-я поздравляю тебя с твоим днем рождения и желаю тебе всего самого наилучшего.
-
-Пусть этот день тебе запомнится и будет для тебя самым лучшим, что только было.
-
-Я очень рад, что этот день настал и у меня для тебя подготовлен особый подарок, который
-я готовил в течение всего месяца специально для тебя.
-
-        </div>
+        <div id="letterText" class="letter-text"></div>
 
         <button onclick="openChoiceScreen()">
             Дальше ❤️
@@ -1067,7 +1130,141 @@ textarea::placeholder{
 </section>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+/* =================================================
+   ПРИМЕНЕНИЕ НАСТРОЕК
+   ================================================= */
+
+function applySiteConfig(){
+    const letter = document.getElementById("letterText");
+    if(letter){
+        letter.textContent = SITE_CONFIG.letter;
+    }
+
+    const title = document.querySelector(".photo-title");
+    if(title){
+        title.textContent = "Ещё один сюрприз ❤️";
+    }
+
+    document.title = `Для ${SITE_CONFIG.name} ❤️`;
+
+    const replyInput = document.getElementById("replyText");
+    if(replyInput){
+        replyInput.placeholder =
+            `Напиши здесь свой ответ, ${SITE_CONFIG.name}...`;
+    }
+}
+
+function openAdmin(){
+    document.getElementById("adminName").value =
+        SITE_CONFIG.name || "";
+
+    document.getElementById("adminBirthday").value =
+        SITE_CONFIG.birthday || "";
+
+    document.getElementById("adminLetter").value =
+        SITE_CONFIG.letter || "";
+
+    document.getElementById("adminPhoto").value =
+        SITE_CONFIG.photo || "";
+document.getElementById("adminStatus").textContent = "";
+    document.getElementById("configLink").classList.add("hidden");
+
+    document.getElementById("questionScreen")
+        .classList.add("hidden");
+
+    document.getElementById("adminScreen")
+        .classList.remove("hidden");
+}
+
+function closeAdmin(){
+    document.getElementById("adminScreen")
+        .classList.add("hidden");
+
+    document.getElementById("questionScreen")
+        .classList.remove("hidden");
+
+    document.getElementById("birthdayInput").value = "";
+}
+
+function encodeConfig(config){
+    const json = JSON.stringify(config);
+
+    return btoa(
+        encodeURIComponent(json)
+    )
+    .replace(/\+/g,"-")
+    .replace(/\//g,"_")
+    .replace(/=+$/,"");
+}
+
+function saveAdminSettings(){
+    const config = {
+        name:
+            document.getElementById("adminName").value.trim(),
+
+        birthday:
+            document.getElementById("adminBirthday").value.trim(),
+
+        letter:
+            document.getElementById("adminLetter").value,
+
+        photo:
+            document.getElementById("adminPhoto").value.trim()};
+
+    if(!config.name){
+        document.getElementById("adminStatus").textContent =
+            "Укажи имя.";
+        return;
+    }
+
+    if(!/^\d{2}\.\d{2}$/.test(config.birthday)){
+        document.getElementById("adminStatus").textContent =
+            "Дата должна быть в формате ДД.ММ, например 01.10.";
+        return;
+    }
+
+    if(!config.letter.trim()){
+        document.getElementById("adminStatus").textContent =
+            "Текст письма не может быть пустым.";
+        return;
+    }
+
+    if(!config.photo){
+        document.getElementById("adminStatus").textContent =
+            "Укажи картинку.";
+        return;
+    }
+
+    if(
+        config.email &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.email)
+    ){
+        document.getElementById("adminStatus").textContent =
+            "Проверь адрес электронной почты.";
+        return;
+    }
+
+    const encoded = encodeConfig(config);
+
+    const url =
+        window.location.href.split("?")[0] +
+        "?cfg=" +
+        encoded;
+
+    const link = document.getElementById("configLink");
+
+    link.href = url;
+    link.textContent = url;
+    link.classList.remove("hidden");
+
+    document.getElementById("adminStatus").textContent =
+        "Готово! Ссылка создана ❤️";
+}
+
+applySiteConfig();
+
+</script>
 
 
 <script>
@@ -1089,12 +1286,57 @@ emailjs.init({
    НАСТРОЙКИ
 ================================================= */
 
-const correctBirthday =
-    "01.10";
+const DEFAULT_CONFIG = {
+    name: "Лера",
+    birthday: "01.10",
+    letter:
+`Дорогая любимая Лера
 
+я поздравляю тебя с твоим днем рождения и желаю тебе всего самого наилучшего.
 
-const PHOTO_URL =
-    "foto.jpg";
+Пусть этот день тебе запомнится и будет для тебя самым лучшим, что только было.
+
+Я очень рад, что этот день настал и у меня для тебя подготовлен особый подарок, который
+я готовил в течение всего месяца специально для тебя.`,
+    photo: "foto.jpg"};
+
+/*
+   Настройки можно передавать через ссылку:
+   ?cfg=<base64url-код конфигурации>
+*/
+function getSiteConfig(){
+    const params = new URLSearchParams(window.location.search);
+    const encoded = params.get("cfg");
+
+    if(!encoded){
+        return {...DEFAULT_CONFIG};
+    }
+
+    try{
+        const json = decodeURIComponent(
+            atob(
+                encoded
+                .replace(/-/g,"+")
+                .replace(/_/g,"/")
+            )
+        );
+
+        const parsed = JSON.parse(json);
+
+        return {
+            ...DEFAULT_CONFIG,
+            ...parsed
+        };
+    }catch(error){
+        console.error("Не удалось прочитать настройки:", error);
+        return {...DEFAULT_CONFIG};
+    }
+}
+
+const SITE_CONFIG = getSiteConfig();
+
+const correctBirthday = SITE_CONFIG.birthday;
+const PHOTO_URL = SITE_CONFIG.photo;
 
 
 /*
@@ -2691,9 +2933,7 @@ function sendPersonalReply(){
 
                 now.toLocaleTimeString(
                     "ru-RU"
-                )
-
-        }
+                )}
 
     )
 
@@ -2774,30 +3014,93 @@ function showScreen(
    ENTER
 ================================================= */
 
+let secretCode = "";
+
 document
-    .getElementById(
-        "birthdayInput"
-    )
-    .addEventListener(
+    .getElementById("birthdayInput")
+    .addEventListener("input", function(event){
 
-        "keydown",
+        const value = event.target.value.trim();
 
-        function(event){
-
-            if(
-                event.key ===
-                "Enter"
-            ){
-
-                checkBirthday();
-
-            }
-
+        // Секретная комбинация 304056
+        if(value === "304056"){
+            secretCode = "";
+            event.target.value = "";
+            openAdmin();
+            return;
         }
 
-    );
+        // Не даём коду ломать обычную проверку даты
+        if(value.length > 6){
+            event.target.value = value.slice(0, 6);
+        }
+    });
+
+document
+    .getElementById("birthdayInput")
+    .addEventListener("keydown", function(event){
+
+        if(event.key === "Enter"){
+            if(event.target.value.trim() === "304056"){
+                event.target.value = "";
+                openAdmin();
+                return;
+            }
+
+            checkBirthday();
+        }
+    });
 
 </script>
+
+
+<!-- =================================================
+     СЕКРЕТНАЯ ПАНЕЛЬ НАСТРОЕК
+     Открывается комбинацией 304056 в поле даты
+     ================================================= -->
+<section id="adminScreen" class="screen hidden">
+    <div class="admin-box">
+        <h2>⚙️ Настройки сайта</h2>
+        <p class="admin-note">
+            Измени данные и получи ссылку с сохранёнными настройками.
+        </p>
+
+        <div class="admin-field">
+            <label for="adminName">Имя</label>
+            <input id="adminName" type="text" placeholder="Например: Лера">
+        </div>
+
+        <div class="admin-field">
+            <label for="adminBirthday">Правильная дата</label>
+            <input id="adminBirthday" type="text" placeholder="Например: 01.10">
+        </div>
+
+        <div class="admin-field">
+            <label for="adminLetter">Текст письма</label>
+            <textarea id="adminLetter" placeholder="Текст письма"></textarea>
+        </div>
+
+        <div class="admin-field">
+            <label for="adminPhoto">Картинка для сбора из сердечек</label>
+            <input id="adminPhoto" type="text" placeholder="Например: foto.jpg">
+            <small style="color:#bdb0e8">
+                Укажи имя файла картинки, который лежит рядом с HTML-файлом,
+                либо URL изображения.
+            </small>
+        </div>
+<div class="admin-actions">
+            <button type="button" onclick="saveAdminSettings()">
+                Сохранить и получить ссылку 🔗
+            </button>
+            <button type="button" onclick="closeAdmin()">
+                Закрыть
+            </button>
+        </div>
+
+        <div id="adminStatus"></div>
+        <a id="configLink" class="config-link hidden" href="#" target="_blank"></a>
+    </div>
+</section>
 
 </body>
 </html>
