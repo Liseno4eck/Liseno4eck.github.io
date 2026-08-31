@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Для тебя ❤️</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;font-family:Arial,sans-serif;color:#fff;background:#08001c}
+.screen{position:fixed;inset:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:20px}
+.hidden{display:none!important}
+button{margin-top:20px;padding:15px 30px;border:0;border-radius:15px;color:#fff;background:linear-gradient(90deg,#4420ff,#00aaff);font-size:18px;font-weight:bold;cursor:pointer;box-shadow:0 0 10px #4e32ff,0 0 25px rgba(0,150,255,.6);transition:.3s}
+button:hover{transform:scale(1.05)}
+#questionScreen,#choiceScreen,#answerScreen,#replyScreen{background:radial-gradient(circle at center,#5930d4 0%,#251064 45%,#08001c 100%)}
+.question-box,.reply-box,.choice-box,.answer-box{width:min(92%,750px);text-align:center}
+h1,h2{text-shadow:0 0 10px #fff,0 0 25px #8d5cff,0 0 50px #4c00ff}
+.question-box h1{font-size:clamp(28px,7vw,46px);margin-bottom:30px}
+input,textarea{width:100%;padding:17px 20px;border-radius:15px;border:2px solid #7c4dff;outline:none;background:rgba(255,255,255,.08);color:#fff;font-size:20px;box-shadow:0 0 10px #6030ff,inset 0 0 10px rgba(120,70,255,.2)}
+input{text-align:center} textarea{min-height:180px;resize:none;text-align:left}
+input::placeholder,textarea::placeholder{color:#c9baff}
+#error,#sendStatus{margin-top:15px;min-height:25px;color:#ffb0dc}
+#successScreen{text-align:center;background:radial-gradient(circle,#5526cc,#170842 75%)}
+.success-text h2{font-size:clamp(28px,7vw,45px)}
+.success-text p,.reply-box p{margin-top:15px;color:#d7caff;font-size:18px}
+#letterScreen{overflow-y:auto;padding:30px 15px;background:radial-gradient(circle at center,#4b24b8,#100026 80%)}
+.letter{width:min(92%,650px);max-height:90vh;padding:45px 35px;color:#321b42;background:linear-gradient(135deg,#fffaf0,#f6e5c9);border-radius:8px;box-shadow:0 0 20px rgba(255,255,255,.2),0 0 60px rgba(90,20,255,.5);transform:rotate(-1deg);overflow-y:auto}
+.letter h2{text-align:center;margin-bottom:25px;color:#6c2698;font-size:30px}.letter-text{white-space:pre-line;font-family:Georgia,serif;font-size:19px;line-height:1.7}.letter button{display:block;margin:30px auto 0}
+.choice-box h1,.answer-box h1{font-size:clamp(28px,6vw,50px);line-height:1.3;margin-bottom:35px}
+.choice-buttons{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;position:relative;min-height:90px}
+.choice-buttons button{min-width:150px}.answer-heart{display:block;margin-top:25px;font-size:80px;animation:heartBeat 1.2s infinite}
+#photoScreen{padding:0;background:#050505;overflow:hidden;display:block}
+#heartCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:pointer;touch-action:none}
+.photo-title{position:absolute;top:max(18px,env(safe-area-inset-top));left:0;right:0;z-index:10;text-align:center;padding:10px 20px;font-size:clamp(20px,5vw,32px);text-shadow:0 0 10px #000,0 0 20px #000;pointer-events:none}
+.photo-hint{position:absolute;left:0;right:0;bottom:max(20px,env(safe-area-inset-bottom));z-index:10;text-align:center;padding:10px 20px;font-size:17px;text-shadow:0 0 8px #000,0 0 15px #000;pointer-events:none}
+#pleasantButton{position:absolute;z-index:20;left:50%;bottom:max(25px,env(safe-area-inset-bottom));transform:translateX(-50%);display:none;margin:0;white-space:nowrap}
+#loginButton{position:fixed;top:12px;right:12px;z-index:100;padding:10px 16px;margin:0;font-size:14px}
+#adminScreen{background:radial-gradient(circle at center,#3c1b8f 0%,#100022 80%);overflow-y:auto;align-items:flex-start;padding:25px 15px}
+.admin-box{width:min(94%,820px);max-height:94vh;overflow-y:auto;padding:30px;border-radius:22px;background:rgba(20,10,50,.97);border:1px solid rgba(180,130,255,.35);box-shadow:0 0 45px rgba(90,30,255,.45)}
+.admin-box h2{text-align:center;margin-bottom:10px}.admin-note{text-align:center;color:#cfc2ff;margin-bottom:25px}.admin-field{margin-bottom:18px}.admin-field label{display:block;margin-bottom:8px;font-weight:bold}.admin-field textarea{min-height:120px}.admin-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.admin-actions button{margin-top:5px}.admin-status{text-align:center;min-height:25px;margin-top:15px;color:#baffd5}.config-link{display:block;margin-top:15px;padding:12px;border-radius:12px;background:rgba(255,255,255,.08);color:#fff;word-break:break-all;text-decoration:none}.choice-extra{margin-top:12px;padding:15px;border-radius:14px;background:rgba(255,255,255,.06)}
+#adminPhotoPreview{max-width:100%;max-height:220px;border-radius:14px;object-fit:contain;display:block;margin:12px auto}
+@keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+@media(max-width:600px){.letter{padding:35px 22px}.letter-text{font-size:17px;line-height:1.6}.letter h2{font-size:25px}button{font-size:16px;padding:14px 25px}.admin-box{padding:22px 17px}}
+</style>
+</head>
+<body>
+
+<button id="loginButton" onclick="loginTelegram()">🔐 Войти</button>
+
+<section id="questionScreen" class="screen">
+  <div class="question-box">
+    <h1 id="birthdayQuestion">Когда у тебя день рождения?</h1>
+    <input id="birthdayInput" type="text" placeholder="Например: 12.12">
+    <button onclick="checkBirthday()">Ответить ❤️</button>
+    <div id="error"></div>
+  </div>
+</section>
+
+<section id="successScreen" class="screen hidden">
+  <div class="success-text"><h2 id="successText"></h2><p id="successSubtext"></p></div>
+</section>
+
+<section id="letterScreen" class="screen hidden">
+  <div class="letter">
+    <h2 id="letterTitle">Для тебя 💌</h2>
+    <div id="letterText" class="letter-text"></div>
+    <button onclick="openChoiceScreen()">Дальше ❤️</button>
+  </div>
+</section>
+
+<section id="choiceScreen" class="screen hidden">
+  <div class="choice-box">
+    <h1 id="choiceQuestion"></h1>
+    <div class="choice-buttons">
+      <button id="yesButton" onclick="answerYes()">Да ❤️</button>
+      <button id="noButton" onclick="answerNo()">Нет 😢</button>
+    </div>
+  </div>
+</section>
+
+<section id="answerScreen" class="screen hidden">
+  <div class="answer-box">
+    <h1 id="answerText"></h1>
+    <span class="answer-heart">❤️</span>
+    <button onclick="openPhotoScreen()">Далее ❤️</button>
+  </div>
+</section>
+
+<section id="photoScreen" class="screen hidden">
+  <canvas id="heartCanvas"></canvas>
+  <div id="photoTitle" class="photo-title"></div>
+  <div id="photoHint" class="photo-hint"></div>
+  <button id="pleasantButton" onclick="openReplyScreen()">Приятно ❤️</button>
+</section>
+
+<section id="replyScreen" class="screen hidden">
+  <div class="reply-box">
+    <h1 id="replyTitle"></h1>
+    <p id="replyDescription"></p>
+    <textarea id="replyText" placeholder=""></textarea>
+    <button onclick="sendPersonalReply()">Отправить ❤️</button>
+    <div id="sendStatus"></div>
+  </div>
+</section>
+
+<section id="adminScreen" class="screen hidden">
+  <div class="admin-box">
+    <h2>⚙️ Настройки сайта</h2>
+    <p class="admin-note">Сначала зарегистрируйся через кнопку «Войти» в Telegram-боте. Затем введи код создателя ниже.</p>
+
+    <div class="admin-field">
+      <label>Код создателя из Telegram</label>
+      <input id="adminCreatorCode" type="text" placeholder="Например: ABC123...">
+    </div>
+    <div class="admin-field"><label>Имя</label><input id="adminName" type="text" placeholder="Например: Лера"></div>
+    <div class="admin-field"><label>Правильная дата</label><input id="adminBirthday" type="text" placeholder="Например: 01.10"></div>
+    <div class="admin-field"><label>Текст после правильной даты</label><input id="adminSuccessText" type="text"></div>
+    <div class="admin-field"><label>Текст письма</label><textarea id="adminLetter"></textarea></div>
+    <div class="admin-field"><label>Вопрос перед Да/Нет</label><textarea id="adminChoiceQuestion"></textarea></div>
+
+    <div class="admin-field">
+      <label>Ты хочешь, чтобы кнопка «Нет» убегала?</label>
+      <select id="adminNoRuns" style="width:100%;padding:15px;border-radius:15px;border:2px solid #7c4dff;background:#21104d;color:#fff;font-size:18px">
+        <option value="yes">Да</option>
+        <option value="no">Нет</option>
+      </select>
+    </div>
+
+    <div id="noTextWrap" class="choice-extra">
+      <div class="admin-field" style="margin:0">
+        <label>Текст после нажатия «Нет»</label>
+        <textarea id="adminNoText" placeholder="Например: Ну пожалуйста, не отказывайся ❤️"></textarea>
+      </div>
+    </div>
+
+    <div class="admin-field"><label>Текст после нажатия «Да»</label><textarea id="adminYesText"></textarea></div>
+    <div class="admin-field"><label>Заголовок экрана фотографии</label><input id="adminPhotoTitle" type="text"></div>
+    <div class="admin-field"><label>Подсказка на фотографии</label><input id="adminPhotoHint" type="text"></div>
+    <div class="admin-field"><label>Заголовок последнего экрана</label><input id="adminReplyTitle" type="text"></div>
+    <div class="admin-field"><label>Текст под заголовком последнего экрана</label><input id="adminReplyDescription" type="text"></div>
+    <div class="admin-field"><label>Фото</label><input id="adminPhotoFile" type="file" accept="image/*"><img id="adminPhotoPreview" class="hidden"></div>
+
+    <div class="admin-actions">
+      <button onclick="saveAdminSettings()">Создать ссылку 🔗</button>
+      <button onclick="closeAdmin()">Закрыть</button>
+    </div>
+    <div id="adminStatus" class="admin-status"></div>
+    <a id="configLink" class="config-link hidden" target="_blank"></a>
+  </div>
+</section>
+
+<script>
+const API_BASE = "";
+const BOT_USERNAME = "YOUR_BOT_USERNAME";
+let SITE_CONFIG = null;
+let configId = new URLSearchParams(location.search).get("id");
+let noButtonClicks = 0;
+let selectedPhoto = "";
+
+const DEFAULT_CONFIG = {
+  name:"Лера", birthday:"01.10",
+  successText:"Отлично! Ты ввела правильно ❤️",
+  successSubtext:"У меня для тебя кое-что есть...",
+  letter:"Дорогая любимая Лера\\n\\nЯ поздравляю тебя с твоим днем рождения и желаю тебе всего самого наилучшего.",
+  choiceQuestion:"Ты хочешь, чтобы я к тебе приехал на выходные после твоего дня рождения? ❤️",
+  noRuns:true,
+  noText:"Ну пожалуйста, не отказывайся ❤️",
+  yesText:"Спасибо, что согласилась ❤️<br><br>На выходных я приеду к тебе ориентировочно после 12.",
+  photoTitle:"Ещё один сюрприз ❤️",
+  photoHint:"Нажимай на экран — фотография будет собираться из сердечек ❤️",
+  replyTitle:"Мне очень приятно ❤️",
+  replyDescription:"Напиши мне что-нибудь в ответ 💌",
+  photo:""
+};
+
+async function api(path, options={}) {
+  const r = await fetch(API_BASE + path, {
+    headers: {"Content-Type":"application/json", ...(options.headers||{})},
+    ...options
+  });
+  const data = await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(data.error || "Ошибка сервера");
+  return data;
+}
+
+function loginTelegram(){
+  const code = new URLSearchParams(location.search).get("id") || "";
+  const start = code ? "?start=site_" + encodeURIComponent(code) : "";
+  location.href = "https://t.me/" + BOT_USERNAME + start;
+}
+
+function show(a,b){document.getElementById(a).classList.add("hidden");document.getElementById(b).classList.remove("hidden")}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+
+async function loadConfig(){
+  if(!configId){SITE_CONFIG={...DEFAULT_CONFIG}; applyConfig(); return}
+  try {
+    SITE_CONFIG = await api("/api/config/" + encodeURIComponent(configId));
+    applyConfig();
+    await track("open");
+  } catch(e) {
+    SITE_CONFIG={...DEFAULT_CONFIG};
+    applyConfig();
+  }
+}
+
+function applyConfig(){
+  const c=SITE_CONFIG;
+  document.title="Для "+c.name+" ❤️";
+  document.getElementById("successText").innerHTML=c.successText;
+  document.getElementById("successSubtext").textContent=c.successSubtext;
+  document.getElementById("letterText").textContent=c.letter;
+  document.getElementById("choiceQuestion").innerHTML=c.choiceQuestion;
+  document.getElementById("photoTitle").textContent=c.photoTitle;
+  document.getElementById("photoHint").textContent=c.photoHint;
+  document.getElementById("replyTitle").innerHTML=c.replyTitle;
+  document.getElementById("replyDescription").textContent=c.replyDescription;
+  document.getElementById("replyText").placeholder="Напиши здесь свой ответ, "+c.name+"...";
+}
+
+async function track(event, extra={}){
+  if(!configId) return;
+  try {
+    await api("/api/event",{method:"POST",body:JSON.stringify({
+      config_id:configId,event,event_name:extra.name||"",text:extra.text||""
+    })});
+  } catch(e){console.warn(e)}
+}
+
+async function checkBirthday(){
+  const value=document.getElementById("birthdayInput").value.trim();
+  const error=document.getElementById("error");
+  if(value===SITE_CONFIG.birthday){
+    error.textContent="";
+    await track("birthday");
+    show("questionScreen","successScreen");
+    setTimeout(()=>show("successScreen","letterScreen"),2500);
+  } else error.textContent="Хмм... Кажется, ответ неправильный 😏";
+}
+
+function openChoiceScreen(){
+  show("letterScreen","choiceScreen");
+  noButtonClicks=0;
+  const n=document.getElementById("noButton");
+  n.style.position="";n.style.left="";n.style.top="";
+  document.getElementById("yesButton").style.transform="";
+}
+
+function answerNo(){
+  noButtonClicks++;
+  if(!SITE_CONFIG.noRuns){
+    document.getElementById("answerText").innerHTML=SITE_CONFIG.noText;
+    show("choiceScreen","answerScreen");
+    return;
+  }
+  const no=document.getElementById("noButton"), yes=document.getElementById("yesButton");
+  yes.style.transform="scale("+Math.min(1+noButtonClicks*.18,2.5)+")";
+  no.style.position="fixed";
+  const margin=15,w=no.offsetWidth,h=no.offsetHeight;
+  no.style.left=(margin+Math.random()*Math.max(1,innerWidth-w-2*margin))+"px";
+  no.style.top=(margin+Math.random()*Math.max(1,innerHeight-h-2*margin))+"px";
+}
+
+async function answerYes(){
+  await track("yes");
+  document.getElementById("answerText").innerHTML=SITE_CONFIG.yesText;
+  show("choiceScreen","answerScreen");
+}
+
+async function openPhotoScreen(){
+  show("answerScreen","photoScreen");
+  document.getElementById("pleasantButton").style.display="none";
+  document.getElementById("photoHint").style.display="block";
+  initPhoto();
+}
+
+async function openReplyScreen(){show("photoScreen","replyScreen")}
+
+async function sendPersonalReply(){
+  const text=document.getElementById("replyText").value.trim(), status=document.getElementById("sendStatus");
+  if(!text){status.textContent="Сначала напиши что-нибудь ❤️";return}
+  status.textContent="Отправляю сообщение... 💌";
+  try{
+    await track("reply",{text});
+    status.textContent="Сообщение отправлено ❤️";
+    document.getElementById("replyText").value="";
+  }catch(e){status.textContent="Не удалось отправить сообщение 😢"}
+}
+
+/* Простая сборка фото из сердечек */
+const canvas=document.getElementById("heartCanvas"),ctx=canvas.getContext("2d");
+let hearts=[],photoImg=new Image(),revealed=0,animating=false;
+function initPhoto(){
+  if(!SITE_CONFIG.photo){ctx.fillStyle="#050505";ctx.fillRect(0,0,innerWidth,innerHeight);return}
+  canvas.width=innerWidth;canvas.height=innerHeight;photoImg=new Image();
+  photoImg.onload=()=>buildHearts();photoImg.src=SITE_CONFIG.photo;
+}
+function buildHearts(){
+  canvas.width=innerWidth;canvas.height=innerHeight;hearts=[];revealed=0;
+  const mobile=innerWidth<=600,w=mobile?innerWidth*.88:innerWidth*.75,h=mobile?innerHeight*.68:innerHeight*.75;
+  const ox=(innerWidth-w)/2,oy=(innerHeight-h)/2,off=document.createElement("canvas");
+  off.width=Math.floor(w);off.height=Math.floor(h);const o=off.getContext("2d");
+  const s=Math.max(w/photoImg.naturalWidth,h/photoImg.naturalHeight),iw=photoImg.naturalWidth*s,ih=photoImg.naturalHeight*s;
+  o.filter="grayscale(1)";o.drawImage(photoImg,(w-iw)/2,(h-ih)/2,iw,ih);
+  const p=o.getImageData(0,0,off.width,off.height).data,step=6;
+  for(let y=step/2;y<h;y+=step)for(let x=step/2;x<w;x+=step){
+    const i=(Math.floor(y)*off.width+Math.floor(x))*4,g=p[i]||0;
+    hearts.push({x:ox+x,y:oy+y,g,revealed:false});
+  }
+  drawHearts();
+}
+function heart(x,y,s,g,a=1){
+  ctx.save();ctx.globalAlpha=a;ctx.fillStyle=`rgb(${g},${g},${g})`;ctx.translate(x,y);ctx.beginPath();
+  ctx.moveTo(0,s*.32);ctx.bezierCurveTo(-s*.95,-s*.35,-s*1.05,s*.65,0,s);ctx.bezierCurveTo(s*1.05,s*.65,s*.95,-s*.35,0,s*.32);ctx.fill();ctx.restore()
+}
+function drawHearts(){ctx.fillStyle="#050505";ctx.fillRect(0,0,canvas.width,canvas.height);for(const h of hearts)if(h.revealed)heart(h.x,h.y,4.6,h.g,h.a)}
+function revealPhotoPart(){
+  if(animating||!hearts.length)return;
+  const amount=Math.ceil(hearts.length*.125),end=Math.min(hearts.length,revealed+amount),start=revealed;
+  for(let i=start;i<end;i++)hearts[i].revealed=true;
+  revealed=end;animating=true;let t0=performance.now();
+  function frame(t){
+    const p=Math.min(1,(t-t0)/900);
+    for(let i=start;i<end;i++)hearts[i].a=p;
+    drawHearts();
+    if(p<1)requestAnimationFrame(frame);else{animating=false;if(revealed>=hearts.length){document.getElementById("photoHint").style.display="none";document.getElementById("pleasantButton").style.display="block"}}
+  }
+  requestAnimationFrame(frame);
+}
+canvas.addEventListener("click",revealPhotoPart);canvas.addEventListener("touchstart",e=>{e.preventDefault();revealPhotoPart()},{passive:false});
+
+/* Админ-панель */
+document.getElementById("birthdayInput").addEventListener("input",e=>{if(e.target.value.trim()==="304056"){e.target.value="";openAdmin()}});
+document.getElementById("birthdayInput").addEventListener("keydown",e=>{if(e.key==="Enter")checkBirthday()});
+document.getElementById("adminNoRuns").addEventListener("change",()=>document.getElementById("noTextWrap").classList.toggle("hidden",document.getElementById("adminNoRuns").value==="yes"));
+document.getElementById("adminPhotoFile").addEventListener("change",e=>{
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=ev=>{const im=new Image();im.onload=()=>{const max=900,ratio=Math.min(1,max/Math.max(im.naturalWidth,im.naturalHeight)),c=document.createElement("canvas");c.width=im.naturalWidth*ratio;c.height=im.naturalHeight*ratio;c.getContext("2d").drawImage(im,0,0,c.width,c.height);selectedPhoto=c.toDataURL("image/jpeg",.72);const p=document.getElementById("adminPhotoPreview");p.src=selectedPhoto;p.classList.remove("hidden")};im.src=ev.target.result};r.readAsDataURL(f)
+});
+function openAdmin(){
+  document.getElementById("adminScreen").classList.remove("hidden");document.getElementById("questionScreen").classList.add("hidden");
+  const c=SITE_CONFIG||DEFAULT_CONFIG;
+  for(const [id,key] of Object.entries({adminName:"name",adminBirthday:"birthday",adminSuccessText:"successText",adminLetter:"letter",adminChoiceQuestion:"choiceQuestion",adminNoText:"noText",adminYesText:"yesText",adminPhotoTitle:"photoTitle",adminPhotoHint:"photoHint",adminReplyTitle:"replyTitle",adminReplyDescription:"replyDescription"}))document.getElementById(id).value=c[key]||"";
+  document.getElementById("adminNoRuns").value=c.noRuns?"yes":"no";document.getElementById("noTextWrap").classList.toggle("hidden",c.noRuns);
+}
+function closeAdmin(){document.getElementById("adminScreen").classList.add("hidden");document.getElementById("questionScreen").classList.remove("hidden")}
+async function saveAdminSettings(){
+  const s=id=>document.getElementById(id).value;
+  const creator=s("adminCreatorCode").trim();
+  if(!creator){document.getElementById("adminStatus").textContent="Сначала введи код создателя из Telegram.";return}
+  const cfg={name:s("adminName"),birthday:s("adminBirthday"),successText:s("adminSuccessText"),successSubtext:"У меня для тебя кое-что есть...",letter:s("adminLetter"),choiceQuestion:s("adminChoiceQuestion"),noRuns:s("adminNoRuns")==="yes",noText:s("adminNoText"),yesText:s("adminYesText"),photoTitle:s("adminPhotoTitle"),photoHint:s("adminPhotoHint"),replyTitle:s("adminReplyTitle"),replyDescription:s("adminReplyDescription"),photo:selectedPhoto};
+  try{
+    const r=await api("/api/config",{method:"POST",body:JSON.stringify({creator_code:creator,config:cfg})});
+    const url=location.origin+"/?id="+r.id;const a=document.getElementById("configLink");a.href=url;a.textContent=url;a.classList.remove("hidden");
+    document.getElementById("adminStatus").textContent="Готово! Ссылка создана ❤️";
+  }catch(e){document.getElementById("adminStatus").textContent=e.message}
+}
+loadConfig();
+</script>
+</body>
+</html>
