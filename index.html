@@ -893,35 +893,6 @@ emailjs.init({
     publicKey:"ybgrbJ7-R3wrNJwjx"
 });
 
-/* =================================================
-   VK-БОТ
-   Укажи здесь публичный адрес backend-сервера.
-================================================= */
-const BOT_API_URL = "http://localhost:3000";
-
-async function sendBotEvent(type, data = {}) {
-    if (!BOT_API_URL || BOT_API_URL === "PASTE_YOUR_BACKEND_URL_HERE") {
-        console.warn("VK-бот: не указан BOT_API_URL");
-        return;
-    }
-
-    try {
-        await fetch(BOT_API_URL.replace(/\\/$/, "") + "/api/event", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                type,
-                ...data
-            }),
-            keepalive: true
-        });
-    } catch (error) {
-        console.error("VK-бот: не удалось отправить событие", error);
-    }
-}
-
 
 /* =================================================
    НАСТРОЙКИ ПО УМОЛЧАНИЮ
@@ -1165,15 +1136,6 @@ function checkBirthday(){
     ){
 
         error.innerHTML = "";
-
-        /* Уведомление в VK — один раз за открытие страницы */
-        if (!sessionStorage.getItem("vk_birthday_notified")) {
-            sessionStorage.setItem("vk_birthday_notified", "1");
-
-            sendBotEvent("birthday_correct", {
-                name: SITE_CONFIG.name || "Пользователь"
-            });
-        }
 
 
         showScreen(
@@ -2490,7 +2452,6 @@ function sendPersonalReply(){
         new Date();
 
 
-    /* Старая отправка через EmailJS остаётся */
     emailjs.send(
 
         "service_a2703aa",
@@ -2518,42 +2479,38 @@ function sendPersonalReply(){
 
         }
 
-    ).catch(function(error){
+    )
 
-        console.error(
-            "EmailJS error:",
-            error
-        );
+    .then(
+        function(){
 
-    });
+            status.innerHTML =
+                "Сообщение отправлено ❤️";
 
 
-    /* Новая отправка в VK через backend */
-    sendBotEvent("personal_reply", {
-        name: SITE_CONFIG.name || "Пользователь",
-        message: reply
-    }).then(function(){
+            document
+                .getElementById(
+                    "replyText"
+                )
+                .value =
+                "";
 
-        status.innerHTML =
-            "Сообщение отправлено ❤️";
+        }
+    )
 
-        document
-            .getElementById(
-                "replyText"
-            )
-            .value = "";
+    .catch(
+        function(error){
 
-    }).catch(function(error){
+            console.error(
+                error
+            );
 
-        console.error(
-            "VK-бот: ошибка отправки",
-            error
-        );
 
-        status.innerHTML =
-            "Не удалось отправить сообщение 😢";
+            status.innerHTML =
+                "Не удалось отправить сообщение 😢";
 
-    });
+        }
+    );
 
 }
 
